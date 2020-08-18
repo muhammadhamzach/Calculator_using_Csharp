@@ -12,9 +12,9 @@ namespace Calculator
 {
     public partial class Calc : Form
     {
-        bool oprClicked;
+        bool oprClicked, onceClick;
         int oprClickCount = 0;
-        float num1, num2 = 0;
+        float num1, num2, tempNum = 0 ;
         string opr;
 
 
@@ -57,28 +57,42 @@ namespace Calculator
                 if (oprClickCount == 0)           //check to see if its the first time operator has been pressed
                 {
                     num1 = float.Parse(outputPanel.Text);
-                    oprClickCount++;
+                    if (opr != button.Text)
+                        oprClickCount++;
                     opr = button.Text;
                     oprClicked = true;
                 }
                 else  //if the operator has been pressed beforehand
                 {
                     //finding the result from the calc of two no with given operator and displaying in the box
-                    num2 = float.Parse(outputPanel.Text);
-                    num1 = calculations(opr, num1, num2);
+                    if (button.Text.Equals("="))  //if the user has pressed another operator then storing operator in the string variable
+                    {
+                        if (num1 != float.Parse(outputPanel.Text))
+                            num2 = float.Parse(outputPanel.Text);
+                        num1 = calculations(opr, num1, num2);
+
+                    }
+                    else
+                    {
+                       
+                        num2 = float.Parse(outputPanel.Text);
+                        num1 = calculations(opr, num1, num2);
+                        opr = button.Text;
+                        oprClickCount = 0;
+                    }
+                   // else
+                   // {
+                   //     num2 = float.Parse(outputPanel.Text);
+                    //    num1 = calculations(opr, num1, num2);
+                 //   }
+                    //num2 = float.Parse(outputPanel.Text);
+                    //num1 = calculations(opr, num1, num2);
                     //num2 = 0;
                     outputPanel.Text = Convert.ToString(num1);
-
-                    if (!button.Text.Equals("="))  //if the user has pressed another operator then storing operator in the string variable
-                    {
-                        opr = button.Text;
-                        
-                    }
+                   // opr = button.Text;
                     oprClicked = true;
                 }
             }
-
-
         }
 
         public bool notANumber(Button button)       //check to see if the button clicked is a number or not
