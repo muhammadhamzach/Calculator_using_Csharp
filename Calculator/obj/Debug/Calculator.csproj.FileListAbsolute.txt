@@ -1,0 +1,10 @@
+C:\Users\Muhammad Hamza\Google Drive\CureMD\Calculator_using_Csharp\Calculator\bin\Debug\Calculator.exe.config
+C:\Users\Muhammad Hamza\Google Drive\CureMD\Calculator_using_Csharp\Calculator\bin\Debug\Calculator.exe
+C:\Users\Muhammad Hamza\Google Drive\CureMD\Calculator_using_Csharp\Calculator\bin\Debug\Calculator.pdb
+C:\Users\Muhammad Hamza\Google Drive\CureMD\Calculator_using_Csharp\Calculator\obj\Debug\Calculator.csprojAssemblyReference.cache
+C:\Users\Muhammad Hamza\Google Drive\CureMD\Calculator_using_Csharp\Calculator\obj\Debug\Calculator.Properties.Resources.resources
+C:\Users\Muhammad Hamza\Google Drive\CureMD\Calculator_using_Csharp\Calculator\obj\Debug\Calculator.csproj.GenerateResource.cache
+C:\Users\Muhammad Hamza\Google Drive\CureMD\Calculator_using_Csharp\Calculator\obj\Debug\Calculator.csproj.CoreCompileInputs.cache
+C:\Users\Muhammad Hamza\Google Drive\CureMD\Calculator_using_Csharp\Calculator\obj\Debug\Calculator.exe
+C:\Users\Muhammad Hamza\Google Drive\CureMD\Calculator_using_Csharp\Calculator\obj\Debug\Calculator.pdb
+C:\Users\Muhammad Hamza\Google Drive\CureMD\Calculator_using_Csharp\Calculator\obj\Debug\Calculator.Calc.resources
