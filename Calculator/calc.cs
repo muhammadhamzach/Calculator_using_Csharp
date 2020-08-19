@@ -28,14 +28,31 @@ namespace Calculator
             foreach (Control c in Controls)
             {
                 if (c is Button)
-                    c.Click += new System.EventHandler(button_clicked);
+                    if (c.Text != "AC" && c.Text != "CE")
+                        c.Click += new System.EventHandler(button_clicked);
+                    else if (c.Text == "AC")    
+                        c.Click += new System.EventHandler(buttonResetAll_Click);   //if button pressed is All Clear "AC"
+                 //   else if (c.Text == "CE")
+                   //     outputPanel.Text = "0";         //if button pressed os "clear entry" CE
             }
         }
+
+        private void buttonResetAll_Click(object sender, EventArgs e)
+        {
+            num1 = 0;
+            num2 = 0;
+            oprClicked = false;
+            oprClickCount = 0;
+            outputPanel.Text = "0";
+        }
+
 
         public void button_clicked(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-            if (!notANumber(button))
+            if (button.Text.Equals("C"))            //if button pressed is "clear entry" CE
+                outputPanel.Text = "0";
+            else if (!notANumber(button))
             {
                 if (oprClicked)
                 {
@@ -61,35 +78,38 @@ namespace Calculator
                         oprClickCount++;
                     opr = button.Text;
                     oprClicked = true;
+                    if (button.Text.Equals("%"))
+                    {
+                        num1 = calculations(opr, num1, 0);
+                        outputPanel.Text = Convert.ToString(num1);
+                    }
+                    //    oprClicked = false;
                 }
                 else  //if the operator has been pressed beforehand
                 {
                     //finding the result from the calc of two no with given operator and displaying in the box
                     if (button.Text.Equals("="))  //if the user has pressed another operator then storing operator in the string variable
                     {
-                        if (num1 != float.Parse(outputPanel.Text))
+                        if (num1 != float.Parse(outputPanel.Text))      //bug fix for consecutive "=" presses
                             num2 = float.Parse(outputPanel.Text);
                         num1 = calculations(opr, num1, num2);
-
+                        num2 = 0;
                     }
                     else
                     {
-                       
-                        num2 = float.Parse(outputPanel.Text);
-                        num1 = calculations(opr, num1, num2);
-                        opr = button.Text;
-                        oprClickCount = 0;
+                        if (opr != "%") //making sure last calc wasnt of percentage conditions like these 67%+5 
+                        {
+                            num2 = float.Parse(outputPanel.Text);
+                            num1 = calculations(opr, num1, num2);
+                        }
+                            
+                        opr = button.Text;     //passing the last pressed operator
+                        if (opr == "%")     //if the user pressed % after some calc like 4+5%
+                            num1 = calculations(opr, num1, num2);
+
+                        oprClickCount++;
                     }
-                   // else
-                   // {
-                   //     num2 = float.Parse(outputPanel.Text);
-                    //    num1 = calculations(opr, num1, num2);
-                 //   }
-                    //num2 = float.Parse(outputPanel.Text);
-                    //num1 = calculations(opr, num1, num2);
-                    //num2 = 0;
                     outputPanel.Text = Convert.ToString(num1);
-                   // opr = button.Text;
                     oprClicked = true;
                 }
             }
@@ -121,8 +141,11 @@ namespace Calculator
                     if (n2 != 0)
                         result = n1 / n2;
                     break;
-                case "*":
+                case "x":
                     result = n1 * n2;
+                    break;
+                case "%":
+                    result = n1/100;
                     break;
                 default:
                     result = n1;
