@@ -17,18 +17,12 @@ namespace Calculator
         float num1, num2, tempNum = 0 ;
         string opr;
         int tabNo = 1;
-        Button button20 = new Button();
-        Button button21 = new Button();
-        Button button22 = new Button();
-        Button button23 = new Button();
-        TextBox wordConverter = new TextBox();
-
 
         public Calc()
         {
             InitializeComponent();
         }
-        private void Form1_Load(object sender, EventArgs e) //loading the calculator form
+        protected void Form1_Load(object sender, EventArgs e) //loading the calculator form
         {
             foreach (Control c in Controls)
             {
@@ -52,118 +46,19 @@ namespace Calculator
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboBox1.Text == "Advanced")
-                advanced_tab_create();
+            {
+                Advanced adv = new Advanced();
+                adv.Show();
+                this.Hide();
+            }
             else if (comboBox1.Text == "Advanced+")
-                advancedplus_tab_create();
-            else
-                basic_tab_create();
-
+            {
+                AdvancedPlus advpl = new AdvancedPlus();
+                advpl.Show();
+                this.Hide();
+            }
         }
 
-        public void basic_tab_create()
-        {
-            this.Height = 370;
-            if (tabNo != 1)
-            {
-                adv_buttons_add_remove(false);
-                this.Controls.Remove(wordConverter);
-                outputPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                this.Controls.Remove(button20);
-                this.Controls.Remove(button21);
-                this.Controls.Remove(button22);
-                this.Controls.Remove(button23);
-            }
-            tabNo = 1;
-        }
-
-        public void advanced_tab_create()
-        {
-
-            if (tabNo == 1)
-            {
-                adv_buttons_add_remove(true);
-            }
-            if (tabNo == 3)
-            {
-                this.Controls.Remove(wordConverter);
-                outputPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            }
-
-            tabNo = 2;
-        }
-
-        public void advancedplus_tab_create()
-        {
-            if (tabNo != 3)
-            {
-                this.outputPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                wordConverter.Location = new System.Drawing.Point(20, 80);
-                wordConverter.Size = new System.Drawing.Size(395, 35);
-                wordConverter.TabIndex = 0;
-                wordConverter.Text = "Zero";
-                wordConverter.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-                this.Controls.Add(wordConverter);
-            }
-            if (tabNo == 1)
-            {
-                adv_buttons_add_remove(true);
-            }
-            tabNo = 3;
-        }
-
-        private void adv_buttons_add_remove(bool type)
-        {
-            int spacer = 55;
-            if (type == false)
-                spacer = -55;
-
-            this.button1.Top = this.button1.Top + spacer;
-            this.button2.Top = this.button2.Top + spacer;
-            this.button3.Top = this.button3.Top + spacer;
-            this.button4.Top = this.button4.Top + spacer;
-            this.button5.Top = this.button5.Top + spacer;
-            this.button6.Top = this.button6.Top + spacer;
-            this.button7.Top = this.button7.Top + spacer;
-            this.button8.Top = this.button8.Top + spacer;
-            this.button9.Top = this.button9.Top + spacer;
-            this.button10.Top = this.button10.Top + spacer;
-            this.button11.Top = this.button11.Top + spacer;
-            this.button12.Top = this.button12.Top + spacer;
-            this.button13.Height = this.button13.Height + spacer;
-            this.button14.Top = this.button14.Top + spacer;
-            this.button15.Top = this.button15.Top + spacer;
-            this.button17.Top = this.button17.Top + spacer;
-
-            if(type == true)
-            {
-                this.Height = 425;
-                button20.Location = new Point(20, 105);
-                button21.Location = new Point(100, 105);
-                button22.Location = new Point(180, 105);
-                button23.Location = new Point(260, 105);
-                button20.Text = "CbRT";
-                button21.Text = "x^2";
-                button22.Text = "1/x";
-                button23.Text = "SQRT";
-                button20.Font = new Font("Microsoft Sans Sarif", 12);
-                button21.Font = new Font("Microsoft Sans Sarif", 12);
-                button22.Font = new Font("Microsoft Sans Sarif", 12);
-                button23.Font = new Font("Microsoft Sans Sarif", 12);
-                button20.Font = new Font("Microsoft Sans Sarif", 12);
-                button20.Size = new System.Drawing.Size(75, 50);
-                button21.Size = new System.Drawing.Size(75, 50);
-                button22.Size = new System.Drawing.Size(75, 50);
-                button23.Size = new System.Drawing.Size(75, 50);
-                this.Controls.Add(button20);
-                this.Controls.Add(button21);
-                this.Controls.Add(button22);
-                this.Controls.Add(button23);
-            }
-
-        }
-
-
-        
 
 
         public void button_clicked(object sender, EventArgs e)  //if any button except AC is pressed
@@ -274,4 +169,5 @@ namespace Calculator
             return result;
         }
     }
+
 }

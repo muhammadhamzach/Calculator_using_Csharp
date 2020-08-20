@@ -26,7 +26,7 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
+        protected void InitializeComponent()
         {
             this.outputPanel = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
@@ -312,29 +312,29 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox outputPanel;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.Button button14;
-        private System.Windows.Forms.Button button15;
-        private System.Windows.Forms.Button button17;
+        protected System.Windows.Forms.TextBox outputPanel;
+        protected System.Windows.Forms.Button button2;
+        protected System.Windows.Forms.Button button3;
+        protected System.Windows.Forms.Button button4;
+        protected System.Windows.Forms.Button button1;
+        protected System.Windows.Forms.Button button5;
+        protected System.Windows.Forms.Button button6;
+        protected System.Windows.Forms.Button button7;
+        protected System.Windows.Forms.Button button8;
+        protected System.Windows.Forms.Button button9;
+        protected System.Windows.Forms.Button button10;
+        protected System.Windows.Forms.Button button11;
+        protected System.Windows.Forms.Button button12;
+        protected System.Windows.Forms.Button button13;
+        protected System.Windows.Forms.Button button14;
+        protected System.Windows.Forms.Button button15;
+        protected System.Windows.Forms.Button button17;
 
-        private System.Windows.Forms.Button button18;
-        private System.Windows.Forms.Button button19;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label Menu;
-        private System.Windows.Forms.Button button16;
+        protected System.Windows.Forms.Button button18;
+        protected System.Windows.Forms.Button button19;
+        protected System.Windows.Forms.ComboBox comboBox1;
+        protected System.Windows.Forms.Label Menu;
+        protected System.Windows.Forms.Button button16;
     }
 }
 

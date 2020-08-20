@@ -9,3 +9,6 @@
 
 #### Update 20/8/2020 1340 hrs
 * removed redundant gui code from different tabs and few button placement changes
+
+#### Update 20/08/2020 1730 hrs
+* Implemented Polymorphism in GUi. should have done earlier.. could have saved hours of redundant work i did yesterday. still better now then never.
