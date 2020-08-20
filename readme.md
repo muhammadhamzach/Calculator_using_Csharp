@@ -11,4 +11,11 @@
 * removed redundant gui code from different tabs and few button placement changes
 
 #### Update 20/08/2020 1730 hrs
-* Implemented Polymorphism in GUi. should have done earlier.. could have saved hours of redundant work i did yesterday. still better now then never.
+* Implemented Polymorphism in GUI. should have done earlier.. could have saved hours of redundant work i did yesterday. still better now then never.
+
+#### Update 21/08/2020 0345 hrs
+* bug fix: application exit on all tabs
+* consecutive operator bug DONE!!!!!!!!!!
+* basic calc all funct done
+* OOP event handling done, VIRTUAL FNTN to the rescue
+* adv calc done i think (may be buggy in few cases, will see)

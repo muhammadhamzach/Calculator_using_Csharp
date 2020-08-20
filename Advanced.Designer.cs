@@ -167,6 +167,8 @@
             this.Controls.Add(this.button21);
             this.Controls.Add(this.button20);
             this.Name = "Advanced";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Advanced_FormClosed);
+            this.Load += new System.EventHandler(this.Advanced_Load);
             this.Controls.SetChildIndex(this.outputPanel, 0);
             this.Controls.SetChildIndex(this.button2, 0);
             this.Controls.SetChildIndex(this.button3, 0);

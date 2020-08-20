@@ -304,6 +304,7 @@
             this.Controls.Add(this.outputPanel);
             this.Name = "Calc";
             this.Text = "Calculator";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Calc_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
