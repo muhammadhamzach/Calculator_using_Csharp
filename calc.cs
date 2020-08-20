@@ -65,27 +65,7 @@ namespace Calculator
             this.Height = 370;
             if (tabNo != 1)
             {
-                this.button1.Top = this.button1.Top - 55;
-                this.button2.Top = this.button2.Top - 55;
-                this.button3.Top = this.button3.Top - 55;
-                this.button4.Top = this.button4.Top - 55;
-                this.button5.Top = this.button5.Top - 55;
-                this.button6.Top = this.button6.Top - 55;
-                this.button7.Top = this.button7.Top - 55;
-                this.button8.Top = this.button8.Top - 55;
-                this.button9.Top = this.button9.Top - 55;
-                this.button10.Top = this.button10.Top - 55;
-                this.button11.Top = this.button11.Top - 55;
-                this.button11.Width = 75;
-                this.button11.Left = 100;
-                this.button12.Top = this.button12.Top - 55;
-                this.button12.Left = 20;
-                this.button13.Top = this.button13.Top - 55;
-                this.button14.Top = this.button14.Top - 55;
-                this.button15.Top = this.button15.Top - 55;
-                this.button17.Top = this.button17.Top - 55;
-                this.button18.Top = 270;
-                this.button18.Left = 180;
+                adv_buttons_add_remove(false);
                 this.Controls.Remove(wordConverter);
                 outputPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 this.Controls.Remove(button20);
@@ -96,70 +76,25 @@ namespace Calculator
             tabNo = 1;
         }
 
-
         public void advanced_tab_create()
         {
-            
+
             if (tabNo == 1)
             {
-                this.Height = 425;
-                this.button1.Top = this.button1.Top + 55;
-                this.button2.Top = this.button2.Top + 55;
-                this.button3.Top = this.button3.Top + 55;
-                this.button4.Top = this.button4.Top + 55;
-                this.button5.Top = this.button5.Top + 55;
-                this.button6.Top = this.button6.Top + 55;
-                this.button7.Top = this.button7.Top + 55;
-                this.button8.Top = this.button8.Top + 55;
-                this.button9.Top = this.button9.Top + 55;
-                this.button10.Top = this.button10.Top + 55;
-                this.button11.Top = this.button11.Top + 55;
-                this.button11.Width += 80;
-                this.button11.Left = 20;
-                this.button12.Top = this.button12.Top + 55;
-                this.button12.Left = 180;
-                this.button13.Top = this.button13.Top + 55;
-                this.button14.Top = this.button14.Top + 55;
-                this.button15.Top = this.button15.Top + 55;
-                this.button17.Top = this.button17.Top + 55;
-                this.button18.Top = 215;
-                this.button18.Left = 340;
-                button20.Location = new Point(20, 105);
-                button21.Location = new Point(100, 105);
-                button22.Location = new Point(180, 105);
-                button23.Location = new Point(260, 105);
-                button20.Text = "CbRT";
-                button21.Text = "x^2";
-                button22.Text = "1/x";
-                button23.Text = "SQRT";
-                button20.Font = new Font("Microsoft Sans Sarif", 12);
-                button21.Font = new Font("Microsoft Sans Sarif", 12);
-                button22.Font = new Font("Microsoft Sans Sarif", 12);
-                button23.Font = new Font("Microsoft Sans Sarif", 12);
-                button20.Font = new Font("Microsoft Sans Sarif", 12);
-                button20.Size = new System.Drawing.Size(75, 50);
-                button21.Size = new System.Drawing.Size(75, 50);
-                button22.Size = new System.Drawing.Size(75, 50);
-                button23.Size = new System.Drawing.Size(75, 50);
-                this.Controls.Add(button20);
-                this.Controls.Add(button21);
-                this.Controls.Add(button22);
-                this.Controls.Add(button23);
+                adv_buttons_add_remove(true);
             }
             if (tabNo == 3)
             {
                 this.Controls.Remove(wordConverter);
                 outputPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             }
-            
-            
 
             tabNo = 2;
         }
 
         public void advancedplus_tab_create()
         {
-            if(tabNo != 3)
+            if (tabNo != 3)
             {
                 this.outputPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 wordConverter.Location = new System.Drawing.Point(20, 80);
@@ -169,30 +104,39 @@ namespace Calculator
                 wordConverter.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
                 this.Controls.Add(wordConverter);
             }
-            if (tabNo==1)
+            if (tabNo == 1)
+            {
+                adv_buttons_add_remove(true);
+            }
+            tabNo = 3;
+        }
+
+        private void adv_buttons_add_remove(bool type)
+        {
+            int spacer = 55;
+            if (type == false)
+                spacer = -55;
+
+            this.button1.Top = this.button1.Top + spacer;
+            this.button2.Top = this.button2.Top + spacer;
+            this.button3.Top = this.button3.Top + spacer;
+            this.button4.Top = this.button4.Top + spacer;
+            this.button5.Top = this.button5.Top + spacer;
+            this.button6.Top = this.button6.Top + spacer;
+            this.button7.Top = this.button7.Top + spacer;
+            this.button8.Top = this.button8.Top + spacer;
+            this.button9.Top = this.button9.Top + spacer;
+            this.button10.Top = this.button10.Top + spacer;
+            this.button11.Top = this.button11.Top + spacer;
+            this.button12.Top = this.button12.Top + spacer;
+            this.button13.Height = this.button13.Height + spacer;
+            this.button14.Top = this.button14.Top + spacer;
+            this.button15.Top = this.button15.Top + spacer;
+            this.button17.Top = this.button17.Top + spacer;
+
+            if(type == true)
             {
                 this.Height = 425;
-                this.button1.Top = this.button1.Top + 55;
-                this.button2.Top = this.button2.Top + 55;
-                this.button3.Top = this.button3.Top + 55;
-                this.button4.Top = this.button4.Top + 55;
-                this.button5.Top = this.button5.Top + 55;
-                this.button6.Top = this.button6.Top + 55;
-                this.button7.Top = this.button7.Top + 55;
-                this.button8.Top = this.button8.Top + 55;
-                this.button9.Top = this.button9.Top + 55;
-                this.button10.Top = this.button10.Top + 55;
-                this.button11.Top = this.button11.Top + 55;
-                this.button11.Width += 80;
-                this.button11.Left = 20;
-                this.button12.Top = this.button12.Top + 55;
-                this.button12.Left = 180;
-                this.button13.Top = this.button13.Top + 55;
-                this.button14.Top = this.button14.Top + 55;
-                this.button15.Top = this.button15.Top + 55;
-                this.button17.Top = this.button17.Top + 55;
-                this.button18.Top = 215;
-                this.button18.Left = 340;
                 button20.Location = new Point(20, 105);
                 button21.Location = new Point(100, 105);
                 button22.Location = new Point(180, 105);
@@ -215,15 +159,16 @@ namespace Calculator
                 this.Controls.Add(button22);
                 this.Controls.Add(button23);
             }
-            tabNo = 3;
+
         }
+
+
+        
 
 
         public void button_clicked(object sender, EventArgs e)  //if any button except AC is pressed
         {
             Button button = (Button)sender;
-        //    if (button.Text.Equals("z"))
-        //        Calc.
             if (button.Text.Equals("C"))            //if button pressed is "clear entry" CE
                 outputPanel.Text = "0";
             else if (!notANumber(button))   //if the button pressed is either a number or dec point
