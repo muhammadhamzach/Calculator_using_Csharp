@@ -19,3 +19,7 @@
 * basic calc all funct done
 * OOP event handling done, VIRTUAL FNTN to the rescue
 * adv calc done i think (may be buggy in few cases, will see)
+
+#### Update 21/08/2020 1800 hrs
+* Adv+ Calc done too i.e No to Word Conv Implemented kinda, need to simplify that code too
+* no identifiable bug yet found

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.wordBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // outputPanel
@@ -40,20 +40,21 @@
             // 
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged_1);
             // 
-            // textBox1
+            // wordBox
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(20, 77);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(395, 20);
-            this.textBox1.TabIndex = 29;
-            this.textBox1.Text = "Zero";
+            this.wordBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.wordBox.Location = new System.Drawing.Point(20, 77);
+            this.wordBox.Name = "wordBox";
+            this.wordBox.Size = new System.Drawing.Size(395, 20);
+            this.wordBox.TabIndex = 29;
+            this.wordBox.Text = "Zero";
+            this.wordBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // AdvancedPlus
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(434, 386);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.wordBox);
             this.Name = "AdvancedPlus";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AdvancedPlus_FormClosing);
             this.Load += new System.EventHandler(this.AdvancedPlus_Load);
@@ -83,7 +84,7 @@
             this.Controls.SetChildIndex(this.comboBox1, 0);
             this.Controls.SetChildIndex(this.Menu, 0);
             this.Controls.SetChildIndex(this.button16, 0);
-            this.Controls.SetChildIndex(this.textBox1, 0);
+            this.Controls.SetChildIndex(this.wordBox, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -91,6 +92,6 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox wordBox;
     }
 }

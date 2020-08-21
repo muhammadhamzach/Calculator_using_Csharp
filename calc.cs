@@ -55,16 +55,16 @@ namespace Calculator
         {
             if (comboBox1.Text == "Advanced")
             {
-                exitCheck = true;
                 reinitialize_variables();
+                exitCheck = true;
                 Advanced adv = new Advanced();
                 adv.Show();         //opening up the advanced window
                 this.Hide();        //hiding the current window
             }
             else if (comboBox1.Text == "Advanced+")
             {
-                exitCheck = true;
                 reinitialize_variables();
+                exitCheck = true;
                 AdvancedPlus advpl = new AdvancedPlus();
                 advpl.Show();
                 this.Hide();        //hiding the current window

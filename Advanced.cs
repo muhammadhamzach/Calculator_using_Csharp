@@ -10,8 +10,6 @@ namespace Calculator
 {
     public partial class Advanced : Calculator.Calc
     {
-
-
         public Advanced()
         {
             InitializeComponent();
@@ -26,16 +24,16 @@ namespace Calculator
         {
             if (comboBox1.Text == "Basic")
             {
-                exitCheck = true;
                 reinitialize_variables();
+                exitCheck = true;
                 Calc basic = new Calc();
                 basic.Show();
                 this.Close();        //hiding the current window
             }
             else if (comboBox1.Text == "Advanced+")
             {
-                exitCheck = true;
                 reinitialize_variables();
+                exitCheck = true;
                 AdvancedPlus advpl = new AdvancedPlus();
                 this.Close();        //hiding the current window
             }
