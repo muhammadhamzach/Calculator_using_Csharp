@@ -23,3 +23,6 @@
 #### Update 21/08/2020 1800 hrs
 * Adv+ Calc done too i.e No to Word Conv Implemented kinda, need to simplify that code too
 * no identifiable bug yet found
+
+#### Update 21/08/2020 1900 hrs
+* Sooo Much N-to-W conv code shorted!!
