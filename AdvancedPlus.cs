@@ -33,39 +33,39 @@ namespace Calculator
             }
             if (number == "0")      //if no is Zero then do nothing else xD
                 word = "Zero";
-            else
+            else                    //if no is non-zero
                 word =  isNegative + ConvertToWords(number);
 
-            wordBox.Text = word;
-        }
+            wordBox.Text = word;        //putting the text onto the panel
+        }       //conversion initializer for Neg/Pos dec no
 
         private String ConvertToWords(String number)
         {
             String value = "", points = "", andStr = "", pointStr = "", wholeNo = number;
             {
-                int decimalPlace = number.IndexOf(".");
-                if (decimalPlace > 0)
+                int decimalPlace = number.IndexOf(".");     //finding the index of decimal place
+                if (decimalPlace > 0)           //if decimal point exists
                 {
-                    wholeNo = number.Substring(0, decimalPlace);
-                    points = number.Substring(decimalPlace + 1);
-                    if (points != "")
-                        if (Convert.ToInt32(points) > 0)
+                    wholeNo = number.Substring(0, decimalPlace);        //whole no seperate
+                    points = number.Substring(decimalPlace + 1);        //decimal no separate
+                    if (points != "")                                  //making sure there is some no after decimal point
+                        if (Convert.ToInt32(points) > 0)                //converting decimal string into number for calc
                         {
                             andStr = " Point";// decimal point 
-                            pointStr = ConvertDecimals(points);
+                            pointStr = ConvertDecimals(points);         
                         }
                 }
-                value = ConvertWholeNumber(wholeNo).Trim() + andStr + pointStr;
+                value = ConvertWholeNumber(wholeNo).Trim() + andStr + pointStr;         //final word formed from number
             }
             return value;
-        }
+        }               //converting full no into words
 
-        private String ConvertDecimals(String number)
+        private String ConvertDecimals(String number)       //converting after dec point numbers into words
         {
             String decimalAfter = "";
             int digit;
             
-            for (int i = 0; i < number.Length; i++)
+            for (int i = 0; i < number.Length; i++)     //looping through all no after point and writing each number on the panel
             {
                 digit = Int32.Parse(number[i].ToString());
                 decimalAfter += " " + units[digit];
@@ -73,16 +73,14 @@ namespace Calculator
             return decimalAfter;
         }
 
-        private String ConvertWholeNumber(String Number)
+        private String ConvertWholeNumber(String Number)        //for converting the whole no part into words
         {
-            
             string word = "";
-  
-            double Number_double = (Convert.ToDouble(Number)); 
+            double Number_double = (Convert.ToDouble(Number));      //converting number string into number double
             if (Number_double > 0)
             {
-                Number = Number_double.ToString();
-                int numDigits = Number.Length; 
+                Number = Number_double.ToString();              //check to remove any preceeding zero like 000001 = 1 etc.
+                int numDigits = Number.Length;          
                 int digit;
                     
                 switch (numDigits)
@@ -93,9 +91,9 @@ namespace Calculator
                         break;
                     case 2:                 //tens' range    
                         digit = Int32.Parse(Number[1].ToString());
-                        if (Number[0].ToString().Equals("1"))   
+                        if (Number[0].ToString().Equals("1"))           // if no > 9 and no < 20
                             word = tens[digit];
-                        else
+                        else                                            //if no > 20 and no < 100
                         {
                             word = tens[Int32.Parse(Number[0].ToString()) + 8];
                             word += " ";
@@ -150,7 +148,7 @@ namespace Calculator
 
         private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)  //tab selection drop selection menu
         {
-            if (comboBox1.Text == "Basic")
+            if (comboBox1.Text == "Basic")      //if basic calc is sel
             {
                 reinitialize_variables();
                 exitCheck = true;
@@ -158,7 +156,7 @@ namespace Calculator
                 basic.Show();
                 this.Close();            //hiding the current window
             }
-            else if (comboBox1.Text == "Advanced")
+            else if (comboBox1.Text == "Advanced")      //if adv calc is sel
             {
                 reinitialize_variables();
                 exitCheck = true;
@@ -172,9 +170,9 @@ namespace Calculator
             foreach (Control c in Controls)
             {
                 if (c is Button)
-                      c.Click += new System.EventHandler(NumberToWords);
+                      c.Click += new System.EventHandler(NumberToWords);           //number to word event thread created
             }
-        }
+        }       //loading event controls
 
         private void AdvancedPlus_FormClosing(object sender, FormClosingEventArgs e)  //application closed via advplus tab
         {

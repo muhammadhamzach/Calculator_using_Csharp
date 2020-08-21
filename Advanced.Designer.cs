@@ -189,7 +189,7 @@
             this.Controls.SetChildIndex(this.button18, 0);
             this.Controls.SetChildIndex(this.button19, 0);
             this.Controls.SetChildIndex(this.comboBox1, 0);
-            this.Controls.SetChildIndex(this.Menu, 0);
+            this.Controls.SetChildIndex(this.Title, 0);
             this.Controls.SetChildIndex(this.button16, 0);
             this.Controls.SetChildIndex(this.button20, 0);
             this.Controls.SetChildIndex(this.button21, 0);

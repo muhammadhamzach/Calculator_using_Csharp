@@ -28,6 +28,7 @@
         /// </summary>
         protected void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Calc));
             this.outputPanel = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -48,8 +49,8 @@
             this.button18 = new System.Windows.Forms.Button();
             this.button19 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.Menu = new System.Windows.Forms.Label();
             this.button16 = new System.Windows.Forms.Button();
+            this.Title = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // outputPanel
@@ -253,17 +254,8 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(75, 21);
             this.comboBox1.TabIndex = 22;
+            this.comboBox1.Text = "Menu";
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            // 
-            // Menu
-            // 
-            this.Menu.AutoSize = true;
-            this.Menu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Menu.Location = new System.Drawing.Point(95, 13);
-            this.Menu.Name = "Menu";
-            this.Menu.Size = new System.Drawing.Size(41, 16);
-            this.Menu.TabIndex = 23;
-            this.Menu.Text = "Menu";
             // 
             // button16
             // 
@@ -275,13 +267,23 @@
             this.button16.Text = "C";
             this.button16.UseVisualStyleBackColor = true;
             // 
+            // Title
+            // 
+            this.Title.AutoSize = true;
+            this.Title.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Title.Location = new System.Drawing.Point(295, 13);
+            this.Title.Name = "Title";
+            this.Title.Size = new System.Drawing.Size(121, 16);
+            this.Title.TabIndex = 23;
+            this.Title.Text = "CureMD C# Project";
+            // 
             // Calc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(434, 331);
             this.Controls.Add(this.button16);
-            this.Controls.Add(this.Menu);
+            this.Controls.Add(this.Title);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button19);
             this.Controls.Add(this.button18);
@@ -302,6 +304,8 @@
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.outputPanel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "Calc";
             this.Text = "Calculator";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Calc_FormClosing);
@@ -334,8 +338,8 @@
         protected System.Windows.Forms.Button button18;
         protected System.Windows.Forms.Button button19;
         protected System.Windows.Forms.ComboBox comboBox1;
-        protected System.Windows.Forms.Label Menu;
         protected System.Windows.Forms.Button button16;
+        protected System.Windows.Forms.Label Title;
     }
 }
 

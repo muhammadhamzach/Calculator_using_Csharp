@@ -25,7 +25,7 @@ namespace Calculator
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e) //loading the calculator form
+        private void Form1_Load(object sender, EventArgs e) //loading the calculator form button controls
         {
             foreach (Control c in Controls)
             {
@@ -44,7 +44,7 @@ namespace Calculator
             num1 = num2 = 0;
             opr = operatorArray = "";
             outputPanel.Text = "0";
-        }
+        }               //zeroing out the variables for resuse
 
         protected void buttonResetAll_Click(object sender, EventArgs e)   //event to clear memory of everything
         {

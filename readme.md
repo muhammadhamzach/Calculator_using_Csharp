@@ -26,3 +26,6 @@
 
 #### Update 21/08/2020 1900 hrs
 * Sooo Much N-to-W conv code shorted!!
+
+#### Update 21/08/2020 2030 hrs
+* Added a lot of comments, no more bug yet to be found, looks like i am done for now.

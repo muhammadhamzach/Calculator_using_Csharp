@@ -73,11 +73,11 @@ namespace Calculator
                 if (oprClickCount == 0)           //check to see if its the first time operator has been pressed
                 {
                     num1 = float.Parse(outputPanel.Text);
-                    if (opr != button.Text)
+                    if (opr != button.Text)         
                         oprClickCount++;
                     opr = button.Text;
                     oprClicked = true;
-                    if (button.Text.Equals("%") || button.Text.Equals("SQRT") || button.Text.Equals("1/x") || button.Text.Equals("CbRT") || button.Text.Equals("x^2"))
+                    if (button.Text.Equals("%") || button.Text.Equals("SQRT") || button.Text.Equals("1/x") || button.Text.Equals("CbRT") || button.Text.Equals("x^2"))      //single nm op check
                     {
                         num1 = calculations(opr, num1, 0);
                         outputPanel.Text = Convert.ToString(num1);
@@ -92,15 +92,15 @@ namespace Calculator
                     {
                         if (num1 != float.Parse(outputPanel.Text))      //bug fix for consecutive "=" presses
                             num2 = float.Parse(outputPanel.Text);
-                        num1 = calculations(opr, num1, num2);
+                        num1 = calculations(opr, num1, num2);           //last op carried out again
                         operatorArray = button.Text;
                     }
                     else
                     {
                         if (opr != "%" && opr != "SQRT" && opr != "1/x" && opr != "CbRT" && opr != "x^2" && operatorArray != "=") //making sure last calc wasnt of percentage conditions like these 67%+5 
                         {
-                            num2 = float.Parse(outputPanel.Text);
-                            if (operatorArray.Length == 1 && conscOp == false)
+                            num2 = float.Parse(outputPanel.Text);       //getiing no from the output panel
+                            if (operatorArray.Length == 1 && conscOp == false)      //chek to see if there is ONLY 1 element in string array and also their is no consecutive operator pressed
                             {
                                 num1 = calculations(opr, num1, num2);
                                 conscOp = true;
@@ -114,9 +114,9 @@ namespace Calculator
                             num2 = 0;
                         }
 
-                        oprClickCount++;
+                        oprClickCount++;        //counter increment to make sure it doesnt take value from panel and put into num1
                     }
-                    outputPanel.Text = Convert.ToString(num1);
+                    outputPanel.Text = Convert.ToString(num1);      //putting data onto panel
                     oprClicked = true;
                 }
             }
