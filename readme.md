@@ -29,3 +29,9 @@
 
 #### Update 21/08/2020 2030 hrs
 * Added a lot of comments, no more bug yet to be found, looks like i am done for now.
+
+#### Update 23/08/2020 0346 hrs
+* added keyboard events but there seems to be a few bugs that i need to figure out yet
+* there is something wrong with double == condition, 
+* a couple of other bug fixes that i forgot
+* Threading implementation was fun

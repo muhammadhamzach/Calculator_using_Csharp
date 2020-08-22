@@ -19,10 +19,12 @@ namespace Calculator
         protected bool exitCheck = false;       //check to see if either user is changing tab or closing the program across all three tabs
         protected string operatorArray = "";               //character array to store the list of operators under operations
         protected bool conscOp = false;                   //check to see if consecutive operator has been pressed 
+        protected string key_press = "";                //to store the char received from keyboard input
 
         public Calc()
         {
             InitializeComponent();
+            this.KeyPreview = true;
         }
 
         private void Form1_Load(object sender, EventArgs e) //loading the calculator form button controls
@@ -74,23 +76,61 @@ namespace Calculator
         protected virtual void button_clicked(object sender, EventArgs e)  //if any button except AC is pressed
         {
             Button button = (Button)sender;
-            if (button.Text.Equals("C"))            //if button pressed is "clear entry" CE
+            something_clicked_pressed(button.Text);
+        }
+
+        private bool notANumber(string text_inp)       //check to see if the button clicked is a number or not
+        {
+            if (text_inp.Equals("+") || text_inp.Equals("-") || text_inp.Equals("x") || text_inp.Equals("/") || text_inp.Equals("=") || text_inp.Equals("%"))
+                return true;
+            else
+                return false;
+        }
+
+        private void Calc_FormClosing(object sender, FormClosingEventArgs e)        //form closing event 
+        {
+            if (!exitCheck)
+                Application.Exit();
+        }
+
+        protected void outputPanel_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsDigit(e.KeyChar) || e.KeyChar == '.' || e.KeyChar.Equals('/') || e.KeyChar.Equals('*') || e.KeyChar.Equals('+') || 
+                e.KeyChar.Equals('-') || e.KeyChar.Equals('%') || e.KeyChar == (char)Keys.Enter)
+            {
+                if (e.KeyChar.Equals('*'))
+                    key_press = "x";
+                else if (e.KeyChar == (char)Keys.Enter)
+                    key_press = "=";
+                else
+                    key_press = e.KeyChar.ToString();
+                e.Handled = true;
+                something_clicked_pressed(key_press);
+            }
+            key_press = "";
+                
+        }   //keyboard key pressed on output panel
+
+        protected void something_clicked_pressed(string text_inp)  //if either valid keyboard key or button is pressed
+        {
+            if (text_inp.Equals("C"))            //if button pressed is "clear entry" CE
                 outputPanel.Text = "0";
-            else if (!notANumber(button))   //if the button pressed is either a number or dec point
+            else if (!notANumber(text_inp))   //if the button pressed is either a number or dec point
             {
                 if (oprClicked)             //zeroing out the field for new number entry every type check
                 {
                     outputPanel.Text = "0";
                     oprClicked = false;
                 }
-                if (outputPanel.Text.Equals("0") && !button.Text.Equals(".")) //check to see if the first button clicked is a number and not a decimal point i.e not 0.7 something 
-                    outputPanel.Text = button.Text;
+                if (outputPanel.Text.Equals("0") && (!text_inp.Equals("."))) //check to see if the first button clicked is a number and not a decimal point i.e not 0.7 something 
+                    outputPanel.Text = text_inp;
                 else
                 {
-                    if (button.Text.Equals(".") && !outputPanel.Text.Contains("."))   //check to see if there already isnt a decimal point in the code then if true placee the decimal point
-                        outputPanel.Text += button.Text;
-                    if (!button.Text.Equals("."))     //check to see if a number is clicked and not a decimal point
-                        outputPanel.Text += button.Text;
+                    if (text_inp.Equals(".") && !outputPanel.Text.Contains("."))   //check to see if there already isnt a decimal point in the code then if true placee the decimal point
+                        outputPanel.Text += text_inp;
+
+                    if (!text_inp.Equals("."))     //check to see if a number is clicked and not a decimal point
+                        outputPanel.Text += text_inp;
                 }
                 conscOp = false;
             }
@@ -99,27 +139,27 @@ namespace Calculator
                 if (oprClickCount == 0)           //check to see if its the first time operator has been pressed
                 {
                     num1 = float.Parse(outputPanel.Text);
-                    if (opr != button.Text)
+                    if (opr != text_inp)
                         oprClickCount++;
-                    opr = button.Text;
+                    opr = text_inp;
                     oprClicked = true;
-                    if (button.Text.Equals("%"))
+                    if (text_inp.Equals("%"))
                     {
                         num1 = calculations(opr, num1, 0);
                         outputPanel.Text = Convert.ToString(num1);
                     }
-                    operatorArray = button.Text;
+                    operatorArray = text_inp;
                     conscOp = true;
                 }
                 else  //if the operator has been pressed beforehand
                 {
                     //finding the result from the calc of two no with given operator and displaying in the box
-                    if (button.Text.Equals("="))  //if the user has pressed another operator then storing operator in the string variable
+                    if (text_inp.Equals("="))  //if the user has pressed another operator then storing operator in the string variable
                     {
                         if (num1 != float.Parse(outputPanel.Text))      //bug fix for consecutive "=" presses
                             num2 = float.Parse(outputPanel.Text);
                         num1 = calculations(opr, num1, num2);
-                        operatorArray = button.Text;
+                        operatorArray = text_inp;
                     }
                     else
                     {
@@ -129,42 +169,41 @@ namespace Calculator
                             if (operatorArray.Length == 1 && conscOp == false)
                             {
                                 num1 = calculations(opr, num1, num2);
-                                
                                 conscOp = true;
                             }
-                            //operatorArray = button.Text;
-
                         }
-                        operatorArray = opr = button.Text;     //passing the last pressed operator
+                        operatorArray = opr = text_inp;     //passing the last pressed operator
                         if (opr == "%")     //if the user pressed % after some calc like 4+5%
                         {
                             num1 = calculations(opr, num1, 0);
                             num2 = 0;
                         }
-
                         oprClickCount++;
                     }
+                   
                     outputPanel.Text = Convert.ToString(num1);
                     oprClicked = true;
                 }
             }
         }
 
-        private bool notANumber(Button button)       //check to see if the button clicked is a number or not
+        private void Calc_KeyPress(object sender, KeyPressEventArgs e)
         {
-            string buttonText = button.Text;
-
-            if (buttonText.Equals("+") || buttonText.Equals("-") || buttonText.Equals("x") || buttonText.Equals("/") || buttonText.Equals("=") || buttonText.Equals("%"))
-                return true;
-            else
-                return false;
-
-        }
-
-        private void Calc_FormClosing(object sender, FormClosingEventArgs e)        //form closing event 
-        {
-            if (!exitCheck)
-                Application.Exit();
+            
+            if (char.IsDigit(e.KeyChar) || e.KeyChar == '.' || e.KeyChar.Equals('/') || e.KeyChar.Equals('*') || e.KeyChar.Equals('+') ||
+                e.KeyChar.Equals('-') || e.KeyChar.Equals('%') || e.KeyChar == (char)Keys.Enter)
+            {
+                if (e.KeyChar.Equals('*'))
+                    key_press = "x";
+                else if (e.KeyChar == (char)Keys.Enter)
+                    key_press = "=";
+                else
+                    key_press = e.KeyChar.ToString();
+                e.Handled = true;
+                something_clicked_pressed(key_press);
+            }
+            key_press = "";
+        
         }
 
         private float calculations(string opr, float n1, float n2)      //functions to perform the mathematical function as requested by user

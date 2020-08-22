@@ -62,6 +62,8 @@
             this.outputPanel.TabIndex = 0;
             this.outputPanel.Text = "0";
             this.outputPanel.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.outputPanel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.outputPanel_KeyPress);
+            
             // 
             // button2
             // 
@@ -310,6 +312,7 @@
             this.Text = "Calculator";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Calc_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Calc_KeyPress);
             this.ResumeLayout(false);
             this.PerformLayout();
 

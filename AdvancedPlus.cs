@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Calculator
@@ -18,9 +19,16 @@ namespace Calculator
         public AdvancedPlus()
         {
             InitializeComponent();
+
+            Thread th = new Thread(() =>        //creating a new thread for converter to work in background
+            {
+                while (true)
+                    NumberToWords();            //calling the converter function
+            });
+            th.Start();                         //starting the thread
         }
 
-        private void NumberToWords(object sender, EventArgs e)
+        private void NumberToWords()
         {
             string isNegative = "";
             string number = outputPanel.Text;
@@ -36,7 +44,11 @@ namespace Calculator
             else                    //if no is non-zero
                 word =  isNegative + ConvertToWords(number);
 
-            wordBox.Text = word;        //putting the text onto the panel
+            wordBox.Invoke(new MethodInvoker(delegate           //done to forcefully do cross-thread operation
+           {
+               wordBox.Text = word;         //putting the text onto the panel
+           }));
+                   
         }       //conversion initializer for Neg/Pos dec no
 
         private String ConvertToWords(String number)
@@ -165,19 +177,12 @@ namespace Calculator
             }
         }
 
-        private void AdvancedPlus_Load(object sender, EventArgs e)
-        {
-            foreach (Control c in Controls)
-            {
-                if (c is Button)
-                      c.Click += new System.EventHandler(NumberToWords);           //number to word event thread created
-            }
-        }       //loading event controls
-
         private void AdvancedPlus_FormClosing(object sender, FormClosingEventArgs e)  //application closed via advplus tab
         {
             if (!exitCheck)
                 Application.Exit();
         }
+
+        
     }
 }
