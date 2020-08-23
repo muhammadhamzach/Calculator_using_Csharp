@@ -34,10 +34,6 @@
             this.button23 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // outputPanel
-            // 
-            this.outputPanel.TextChanged += new System.EventHandler(this.outputPanel_TextChanged);
-            // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(98, 157);
@@ -168,7 +164,6 @@
             this.Controls.Add(this.button20);
             this.Name = "Advanced";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Advanced_FormClosed);
-            this.Load += new System.EventHandler(this.Advanced_Load);
             this.Controls.SetChildIndex(this.outputPanel, 0);
             this.Controls.SetChildIndex(this.button2, 0);
             this.Controls.SetChildIndex(this.button3, 0);

@@ -15,11 +15,6 @@ namespace Calculator
             InitializeComponent();
         }
 
-        private void outputPanel_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)       //tab selection drop selection menu
         {
             if (comboBox1.Text == "Basic")
@@ -28,21 +23,16 @@ namespace Calculator
                 exitCheck = true;
                 Calc basic = new Calc();
                 basic.Show();
-                this.Close();        //hiding the current window
+                this.Hide();        //hiding the current window
             }
             else if (comboBox1.Text == "Advanced+")
             {
                 reinitialize_variables();
                 exitCheck = true;
                 AdvancedPlus advpl = new AdvancedPlus();
-                this.Close();        //hiding the current window
-            }
-        }
+                this.Hide();        //hiding the current window
 
-        private void Advanced_FormClosed(object sender, FormClosedEventArgs e)      //application closed via adv tab
-        {
-            if (!exitCheck)
-                Application.Exit();
+            }
         }
 
         protected override void button_clicked(object sender, EventArgs e)  //if any button except AC is pressed
@@ -50,6 +40,8 @@ namespace Calculator
             Button button = (Button)sender;
             if (button.Text.Equals("C"))            //if button pressed is "clear entry" CE
                 outputPanel.Text = "0";
+            else if (button.Text.Equals("AC"))
+                reinitialize_variables();
             else if (!notANumber(button))   //if the button pressed is either a number or dec point
             {
                 if (oprClicked)             //zeroing out the field for new number entry every type check
@@ -90,10 +82,11 @@ namespace Calculator
                     //finding the result from the calc of two no with given operator and displaying in the box
                     if (button.Text.Equals("="))  //if the user has pressed another operator then storing operator in the string variable
                     {
-                        if (num1 != float.Parse(outputPanel.Text))      //bug fix for consecutive "=" presses
+                        if (!conscOp)      //bug fix for consecutive "=" presses
                             num2 = float.Parse(outputPanel.Text);
                         num1 = calculations(opr, num1, num2);           //last op carried out again
                         operatorArray = button.Text;
+                        conscOp = true;
                     }
                     else
                     {
@@ -163,7 +156,7 @@ namespace Calculator
                     result = (float)Math.Pow(Convert.ToDouble(n1), 2);
                     break;
                 case "CbRT":
-                    result = (float)Math.Ceiling(Math.Pow(Convert.ToDouble(n1), (double)1/3));
+                    result = (float)(Math.Pow(Convert.ToDouble(n1), (double)1/3));
                     break;
                 default:
                     result = n1;
@@ -172,8 +165,10 @@ namespace Calculator
             return result;
         }
 
-        protected void Advanced_Load(object sender, EventArgs e)
+        private void Advanced_FormClosed(object sender, FormClosedEventArgs e)      //application closed via adv tab
         {
+            if (!exitCheck)
+                Application.Exit();
         }
     }
 }

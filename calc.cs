@@ -21,6 +21,7 @@ namespace Calculator
         protected bool conscOp = false;                   //check to see if consecutive operator has been pressed 
         protected string key_press = "";                //to store the char received from keyboard input
 
+
         public Calc()
         {
             InitializeComponent();
@@ -32,10 +33,7 @@ namespace Calculator
             foreach (Control c in Controls)
             {
                 if (c is Button)
-                    if (c.Text != "AC")                   //any button that isnt AC 
-                        c.Click += new System.EventHandler(button_clicked);
-                    else if (c.Text == "AC")    
-                        c.Click += new System.EventHandler(buttonResetAll_Click);   //if button pressed is All Clear "AC"
+                    c.Click += new System.EventHandler(button_clicked);
             }
         }
 
@@ -46,12 +44,8 @@ namespace Calculator
             num1 = num2 = 0;
             opr = operatorArray = "";
             outputPanel.Text = "0";
-        }               //zeroing out the variables for resuse
-
-        protected void buttonResetAll_Click(object sender, EventArgs e)   //event to clear memory of everything
-        {
-            reinitialize_variables();
-        }
+            key_press = "";
+    }               //zeroing out the variables for resuse
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)  //tab selection drop selection menu
         {
@@ -87,34 +81,12 @@ namespace Calculator
                 return false;
         }
 
-        private void Calc_FormClosing(object sender, FormClosingEventArgs e)        //form closing event 
-        {
-            if (!exitCheck)
-                Application.Exit();
-        }
-
-        protected void outputPanel_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (char.IsDigit(e.KeyChar) || e.KeyChar == '.' || e.KeyChar.Equals('/') || e.KeyChar.Equals('*') || e.KeyChar.Equals('+') || 
-                e.KeyChar.Equals('-') || e.KeyChar.Equals('%') || e.KeyChar == (char)Keys.Enter)
-            {
-                if (e.KeyChar.Equals('*'))
-                    key_press = "x";
-                else if (e.KeyChar == (char)Keys.Enter)
-                    key_press = "=";
-                else
-                    key_press = e.KeyChar.ToString();
-                e.Handled = true;
-                something_clicked_pressed(key_press);
-            }
-            key_press = "";
-                
-        }   //keyboard key pressed on output panel
-
         protected void something_clicked_pressed(string text_inp)  //if either valid keyboard key or button is pressed
         {
             if (text_inp.Equals("C"))            //if button pressed is "clear entry" CE
                 outputPanel.Text = "0";
+            else if (text_inp.Equals("AC"))
+                reinitialize_variables();
             else if (!notANumber(text_inp))   //if the button pressed is either a number or dec point
             {
                 if (oprClicked)             //zeroing out the field for new number entry every type check
@@ -156,10 +128,11 @@ namespace Calculator
                     //finding the result from the calc of two no with given operator and displaying in the box
                     if (text_inp.Equals("="))  //if the user has pressed another operator then storing operator in the string variable
                     {
-                        if (num1 != float.Parse(outputPanel.Text))      //bug fix for consecutive "=" presses
+                        if (!conscOp)      //bug fix for consecutive "=" presses
                             num2 = float.Parse(outputPanel.Text);
                         num1 = calculations(opr, num1, num2);
                         operatorArray = text_inp;
+                        conscOp = true;
                     }
                     else
                     {
@@ -180,7 +153,7 @@ namespace Calculator
                         }
                         oprClickCount++;
                     }
-                   
+
                     outputPanel.Text = Convert.ToString(num1);
                     oprClicked = true;
                 }
@@ -189,22 +162,38 @@ namespace Calculator
 
         private void Calc_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
             if (char.IsDigit(e.KeyChar) || e.KeyChar == '.' || e.KeyChar.Equals('/') || e.KeyChar.Equals('*') || e.KeyChar.Equals('+') ||
-                e.KeyChar.Equals('-') || e.KeyChar.Equals('%') || e.KeyChar == (char)Keys.Enter)
+                e.KeyChar.Equals('-') || e.KeyChar.Equals('%') )
             {
                 if (e.KeyChar.Equals('*'))
                     key_press = "x";
-                else if (e.KeyChar == (char)Keys.Enter)
-                    key_press = "=";
+              //  else if (e.KeyChar == (char)Keys.Enter)
+                //    key_press = "=";
                 else
                     key_press = e.KeyChar.ToString();
                 e.Handled = true;
                 something_clicked_pressed(key_press);
             }
             key_press = "";
-        
         }
+
+        protected void outputPanel_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsDigit(e.KeyChar) || e.KeyChar == '.' || e.KeyChar.Equals('/') || e.KeyChar.Equals('*') || e.KeyChar.Equals('+') ||
+                e.KeyChar.Equals('-') || e.KeyChar.Equals('%') || e.KeyChar == (char)Keys.Enter)
+            {
+                if (e.KeyChar.Equals('*'))
+                    key_press = "x";
+                // else if (e.KeyChar == (char)Keys.Enter)
+                //   key_press = "=";
+                else
+                    key_press = e.KeyChar.ToString();
+                e.Handled = true;
+                something_clicked_pressed(key_press);
+            }
+            key_press = "";
+
+        }   //keyboard key pressed on output panel
 
         private float calculations(string opr, float n1, float n2)      //functions to perform the mathematical function as requested by user
         {
@@ -233,6 +222,12 @@ namespace Calculator
             }
 
             return result;
+        }
+
+        private void Calc_FormClosing(object sender, FormClosingEventArgs e)        //form closing event 
+        {
+            if (!exitCheck)
+                Application.Exit();
         }
     }
 

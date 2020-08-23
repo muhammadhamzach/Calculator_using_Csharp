@@ -35,3 +35,8 @@
 * there is something wrong with double == condition, 
 * a couple of other bug fixes that i forgot
 * Threading implementation was fun
+
+#### Update 24/08/2020 0300 hrs
+* Removed threading cz too much trouble
+* couple of bug fixes like == condition and multiple tabs of same type shown
+* Enter Bug needs to be solved as first priorty

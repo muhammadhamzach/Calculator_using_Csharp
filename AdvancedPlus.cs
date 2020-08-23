@@ -19,16 +19,9 @@ namespace Calculator
         public AdvancedPlus()
         {
             InitializeComponent();
-
-            Thread th = new Thread(() =>        //creating a new thread for converter to work in background
-            {
-                while (true)
-                    NumberToWords();            //calling the converter function
-            });
-            th.Start();                         //starting the thread
         }
 
-        private void NumberToWords()
+        private void NumberToWords(object sender, EventArgs e)
         {
             string isNegative = "";
             string number = outputPanel.Text;
@@ -44,10 +37,7 @@ namespace Calculator
             else                    //if no is non-zero
                 word =  isNegative + ConvertToWords(number);
 
-            wordBox.Invoke(new MethodInvoker(delegate           //done to forcefully do cross-thread operation
-           {
                wordBox.Text = word;         //putting the text onto the panel
-           }));
                    
         }       //conversion initializer for Neg/Pos dec no
 
@@ -165,15 +155,33 @@ namespace Calculator
                 reinitialize_variables();
                 exitCheck = true;
                 Calc basic = new Calc();
-                basic.Show();
-                this.Close();            //hiding the current window
+                this.Hide();            //hiding the current window
             }
             else if (comboBox1.Text == "Advanced")      //if adv calc is sel
             {
                 reinitialize_variables();
                 exitCheck = true;
                 Advanced adv = new Advanced();
-                this.Close();          //hiding the current window
+                this.Hide();          //hiding the current window
+            }
+        }
+
+        private void AdvancedPlus_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            NumberToWords(sender, e);
+        }
+
+        private void outputPanel_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            NumberToWords(sender, e);
+        }
+
+        private void AdvancedPlus_Load(object sender, EventArgs e)
+        {
+            foreach (Control c in Controls)
+            {
+                if (c is Button)
+                    c.Click += new System.EventHandler(NumberToWords);
             }
         }
 
@@ -182,7 +190,5 @@ namespace Calculator
             if (!exitCheck)
                 Application.Exit();
         }
-
-        
     }
 }

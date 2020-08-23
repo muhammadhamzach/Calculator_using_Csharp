@@ -35,6 +35,7 @@
             // 
             this.outputPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.outputPanel.Size = new System.Drawing.Size(395, 31);
+            this.outputPanel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.outputPanel_KeyPress_1);
             // 
             // comboBox1
             // 
@@ -57,6 +58,8 @@
             this.Controls.Add(this.wordBox);
             this.Name = "AdvancedPlus";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AdvancedPlus_FormClosing);
+            this.Load += new System.EventHandler(this.AdvancedPlus_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AdvancedPlus_KeyPress);
             this.Controls.SetChildIndex(this.button20, 0);
             this.Controls.SetChildIndex(this.button21, 0);
             this.Controls.SetChildIndex(this.button22, 0);
