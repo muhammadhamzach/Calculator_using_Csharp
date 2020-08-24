@@ -31,7 +31,6 @@ namespace Calculator
                 exitCheck = true;
                 AdvancedPlus advpl = new AdvancedPlus();
                 this.Hide();        //hiding the current window
-
             }
         }
 

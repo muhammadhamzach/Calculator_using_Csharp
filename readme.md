@@ -1,42 +1,41 @@
-# Calculator made in C# using Windows Forms
+# Calculator App made in C#
 
-* This is part of the assessment at CureMD retraining program
+**Note:** This is part of the assessment at CureMD retraining program for Electrical Engineers
 
-#### Update 20/8/2020 0332 hrs
-* All three gui tabs made and and code implemented only for 1st basic one rest 2 remains
-* bug of consecutive operator (except percentage and equal) still remains to be solved.
-* also probably needs to change the basic gui a bit to make the conversion to other 2 gui easier, lets see xD
+## Summary
 
-#### Update 20/8/2020 1340 hrs
-* removed redundant gui code from different tabs and few button placement changes
+The project was made to test out the knowledge obtained during the learning phase of C# Language and to test and debug problems in that specfic environment. This App uses Windows Forms to create three layers of the Calculator App i.e Basic, Advanced & Advanced+. Special focus was given on implementing OOP principles like polymorphism etc.
 
-#### Update 20/08/2020 1730 hrs
-* Implemented Polymorphism in GUI. should have done earlier.. could have saved hours of redundant work i did yesterday. still better now then never.
+### Basic Calculator
 
-#### Update 21/08/2020 0345 hrs
-* bug fix: application exit on all tabs
-* consecutive operator bug DONE!!!!!!!!!!
-* basic calc all funct done
-* OOP event handling done, VIRTUAL FNTN to the rescue
-* adv calc done i think (may be buggy in few cases, will see)
+- The Basic Calculator looks like this:
+  - ![](images/basic.png)
+- The functionality this can provide are
+> - Addition
+> - Multiplication
+> - Division
+> - Subtraction
+> - Percentage
+> - User input using both Interface Buttons and Keyboard Keys
+> - Drop-down menu to go to different types of Calculator
 
-#### Update 21/08/2020 1800 hrs
-* Adv+ Calc done too i.e No to Word Conv Implemented kinda, need to simplify that code too
-* no identifiable bug yet found
+### Advanced Calculator
 
-#### Update 21/08/2020 1900 hrs
-* Sooo Much N-to-W conv code shorted!!
+- The Advanced Calculator looks like this:
+  - ![](images/advanced.png)
+- The functionality including all those of Basic Calculator and also
+> - Square
+> - Square Root
+> - Inverse
+> - Cube-Root
 
-#### Update 21/08/2020 2030 hrs
-* Added a lot of comments, no more bug yet to be found, looks like i am done for now.
+### Advanced+ Calculator
 
-#### Update 23/08/2020 0346 hrs
-* added keyboard events but there seems to be a few bugs that i need to figure out yet
-* there is something wrong with double == condition, 
-* a couple of other bug fixes that i forgot
-* Threading implementation was fun
+- The Advanced+ Calculator looks like this:
+  - ![](images/advancedplus.png)
+- The functionality including all those of Basic Calculator and Advanced Calculator and also
+> - Number-to-Word Converter
 
-#### Update 24/08/2020 0300 hrs
-* Removed threading cz too much trouble
-* couple of bug fixes like == condition and multiple tabs of same type shown
-* Enter Bug needs to be solved as first priorty
+
+
+

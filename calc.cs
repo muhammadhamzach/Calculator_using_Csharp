@@ -20,6 +20,7 @@ namespace Calculator
         protected string operatorArray = "";               //character array to store the list of operators under operations
         protected bool conscOp = false;                   //check to see if consecutive operator has been pressed 
         protected string key_press = "";                //to store the char received from keyboard input
+        
 
         public Calc()
         {
@@ -172,7 +173,7 @@ namespace Calculator
         protected void key_press_handler(object sender, KeyPressEventArgs e)
         {
             if (char.IsDigit(e.KeyChar) || e.KeyChar == '.' || e.KeyChar.Equals('/') || e.KeyChar.Equals('*') || e.KeyChar.Equals('+') ||
-                e.KeyChar.Equals('-') || e.KeyChar.Equals('%') || e.KeyChar == (char)Keys.Escape || e.KeyChar == (char)Keys.Back)
+                e.KeyChar.Equals('-') || e.KeyChar.Equals('%') || e.KeyChar == (char)Keys.Escape || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Enter)
             {
                 if (e.KeyChar.Equals('*'))
                     key_press = "x";
@@ -180,6 +181,8 @@ namespace Calculator
                     key_press = "AC";
                 else if (e.KeyChar == (char)Keys.Back)
                     key_press = "C";
+                else if (e.KeyChar == (char)Keys.Enter)
+                    key_press = "=";
                 else
                     key_press = e.KeyChar.ToString();
                 e.Handled = true;
