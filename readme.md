@@ -36,6 +36,8 @@ The project was made to test out the knowledge obtained during the learning phas
 - The functionality including all those of Basic Calculator and Advanced Calculator and also
 > - Number-to-Word Converter
 
+##### Known Issues
 
+- In any type of calculator, if user presses the "AC" **button** then proceed to write numbers and operators (like 9+8) using **Keyboard** and then press the Enter **Key**, it zeros out the result (though if user press "=" button it works correctly). The issue is because of ActiveControl which the last one was "AC". 
 
 
