@@ -21,7 +21,6 @@ namespace Calculator
         protected bool conscOp = false;                   //check to see if consecutive operator has been pressed 
         protected string key_press = "";                //to store the char received from keyboard input
 
-
         public Calc()
         {
             InitializeComponent();
@@ -162,13 +161,25 @@ namespace Calculator
 
         private void Calc_KeyPress(object sender, KeyPressEventArgs e)
         {
+            key_press_handler(sender, e);
+        }
+
+        protected void outputPanel_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            key_press_handler(sender, e);
+        }   //keyboard key pressed on output panel
+
+        protected void key_press_handler(object sender, KeyPressEventArgs e)
+        {
             if (char.IsDigit(e.KeyChar) || e.KeyChar == '.' || e.KeyChar.Equals('/') || e.KeyChar.Equals('*') || e.KeyChar.Equals('+') ||
-                e.KeyChar.Equals('-') || e.KeyChar.Equals('%') )
+                e.KeyChar.Equals('-') || e.KeyChar.Equals('%') || e.KeyChar == (char)Keys.Escape || e.KeyChar == (char)Keys.Back)
             {
                 if (e.KeyChar.Equals('*'))
                     key_press = "x";
-              //  else if (e.KeyChar == (char)Keys.Enter)
-                //    key_press = "=";
+                else if (e.KeyChar == (char)Keys.Escape)
+                    key_press = "AC";
+                else if (e.KeyChar == (char)Keys.Back)
+                    key_press = "C";
                 else
                     key_press = e.KeyChar.ToString();
                 e.Handled = true;
@@ -176,24 +187,6 @@ namespace Calculator
             }
             key_press = "";
         }
-
-        protected void outputPanel_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (char.IsDigit(e.KeyChar) || e.KeyChar == '.' || e.KeyChar.Equals('/') || e.KeyChar.Equals('*') || e.KeyChar.Equals('+') ||
-                e.KeyChar.Equals('-') || e.KeyChar.Equals('%') || e.KeyChar == (char)Keys.Enter)
-            {
-                if (e.KeyChar.Equals('*'))
-                    key_press = "x";
-                // else if (e.KeyChar == (char)Keys.Enter)
-                //   key_press = "=";
-                else
-                    key_press = e.KeyChar.ToString();
-                e.Handled = true;
-                something_clicked_pressed(key_press);
-            }
-            key_press = "";
-
-        }   //keyboard key pressed on output panel
 
         private float calculations(string opr, float n1, float n2)      //functions to perform the mathematical function as requested by user
         {
@@ -230,5 +223,4 @@ namespace Calculator
                 Application.Exit();
         }
     }
-
 }
