@@ -9,7 +9,7 @@ The project was made to test out the knowledge obtained during the learning phas
 ### Basic Calculator
 
 - The Basic Calculator looks like this:
-  - ![](images/basic.png)
+  - ![](images/basic.PNG)
 - The functionality this can provide are
 > - Addition
 > - Multiplication
@@ -22,7 +22,7 @@ The project was made to test out the knowledge obtained during the learning phas
 ### Advanced Calculator
 
 - The Advanced Calculator looks like this:
-  - ![](images/advanced.png)
+  - ![](images/advanced.PNG)
 - The functionality including all those of Basic Calculator and also
 > - Square
 > - Square Root
@@ -32,7 +32,7 @@ The project was made to test out the knowledge obtained during the learning phas
 ### Advanced+ Calculator
 
 - The Advanced+ Calculator looks like this:
-  - ![](images/advancedplus.png)
+  - ![](images/advancedplus.PNG)
 - The functionality including all those of Basic Calculator and Advanced Calculator and also
 > - Number-to-Word Converter
 
