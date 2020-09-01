@@ -44,19 +44,26 @@ namespace Calculator
         private String ConvertToWords(String number)
         {
             String value = "", points = "", andStr = "", pointStr = "", wholeNo = number;
+
+            try {
+                decimal d = Decimal.Parse(number, System.Globalization.NumberStyles.Float);
+                number = d.ToString();
+            }
+            catch
             {
-                int decimalPlace = number.IndexOf(".");     //finding the index of decimal place
-                if (decimalPlace > 0)           //if decimal point exists
-                {
-                    wholeNo = number.Substring(0, decimalPlace);        //whole no seperate
-                    points = number.Substring(decimalPlace + 1);        //decimal no separate
-                    if (points != "")                                  //making sure there is some no after decimal point
-                        if (Convert.ToInt32(points) > 0)                //converting decimal string into number for calc
-                        {
-                            andStr = " Point";// decimal point 
-                            pointStr = ConvertDecimals(points);         
-                        }
-                }
+                return value;
+            }
+            int decimalPlace = number.IndexOf(".");     //finding the index of decimal place
+            if (decimalPlace > 0)           //if decimal point exists
+            {
+                wholeNo = number.Substring(0, decimalPlace);        //whole no seperate
+                points = number.Substring(decimalPlace + 1);        //decimal no separate
+                if (points != "")                                  //making sure there is some no after decimal point
+                    if (Convert.ToInt32(points) > 0)                //converting decimal string into number for calc
+                    {
+                        andStr = " Point";// decimal point 
+                        pointStr = ConvertDecimals(points);         
+            }
                 value = ConvertWholeNumber(wholeNo).Trim() + andStr + pointStr;         //final word formed from number
             }
             return value;
@@ -78,7 +85,7 @@ namespace Calculator
         private String ConvertWholeNumber(String Number)        //for converting the whole no part into words
         {
             string word = "";
-            double Number_double = (Convert.ToDouble(Number));      //converting number string into number double
+            decimal Number_double = (Decimal.Parse(Number));      //converting number string into number double
             if (Number_double > 0)
             {
                 Number = Number_double.ToString();              //check to remove any preceeding zero like 000001 = 1 etc.
@@ -167,11 +174,6 @@ namespace Calculator
         }
 
         private void AdvancedPlus_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            NumberToWords(sender, e);
-        }
-
-        private void outputPanel_KeyPress_1(object sender, KeyPressEventArgs e)
         {
             NumberToWords(sender, e);
         }

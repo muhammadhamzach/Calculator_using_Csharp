@@ -163,11 +163,13 @@ namespace Calculator
         private void Calc_KeyPress(object sender, KeyPressEventArgs e)
         {
             key_press_handler(sender, e);
+            e.Handled = true;
         }
 
         protected void outputPanel_KeyPress(object sender, KeyPressEventArgs e)
         {
             key_press_handler(sender, e);
+            e.Handled = true;
         }   //keyboard key pressed on output panel
 
         protected void key_press_handler(object sender, KeyPressEventArgs e)

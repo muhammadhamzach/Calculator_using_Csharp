@@ -149,7 +149,8 @@ namespace Calculator
                     result = (float)Math.Sqrt(Convert.ToDouble(n1));
                     break;
                 case "1/x":
-                    result = 1 / n1;
+                    if (n1 != 0)
+                        result = 1 / n1;
                     break;
                 case "x^2":
                     result = (float)Math.Pow(Convert.ToDouble(n1), 2);
