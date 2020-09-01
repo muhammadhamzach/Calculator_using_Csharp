@@ -20,12 +20,12 @@ namespace Calculator
         protected string operatorArray = "";               //character array to store the list of operators under operations
         protected bool conscOp = false;                   //check to see if consecutive operator has been pressed 
         protected string key_press = "";                //to store the char received from keyboard input
-        
 
         public Calc()
         {
             InitializeComponent();
             this.KeyPreview = true;
+            Menu_label.Text = "Basic";
         }
 
         private void Form1_Load(object sender, EventArgs e) //loading the calculator form button controls
@@ -54,6 +54,7 @@ namespace Calculator
                 reinitialize_variables();
                 exitCheck = true;
                 Advanced adv = new Advanced();
+                //Menu_label.Text = "Advanced"
                 adv.Show();         //opening up the advanced window
                 this.Hide();        //hiding the current window
             }

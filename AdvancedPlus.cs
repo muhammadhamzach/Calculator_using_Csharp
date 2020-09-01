@@ -19,6 +19,7 @@ namespace Calculator
         public AdvancedPlus()
         {
             InitializeComponent();
+            Menu_label.Text = "Advanced+";
         }
 
         private void NumberToWords(object sender, EventArgs e)

@@ -10,9 +10,11 @@ namespace Calculator
 {
     public partial class Advanced : Calculator.Calc
     {
+
         public Advanced()
         {
             InitializeComponent();
+            Menu_label.Text = "Advanced";
         }
 
         private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)       //tab selection drop selection menu

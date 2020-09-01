@@ -51,6 +51,7 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.button16 = new System.Windows.Forms.Button();
             this.Title = new System.Windows.Forms.Label();
+            this.Menu_label = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // outputPanel
@@ -63,7 +64,6 @@
             this.outputPanel.Text = "0";
             this.outputPanel.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.outputPanel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.outputPanel_KeyPress);
-            
             // 
             // button2
             // 
@@ -279,11 +279,22 @@
             this.Title.TabIndex = 23;
             this.Title.Text = "CureMD C# Project";
             // 
+            // Menu_label
+            // 
+            this.Menu_label.AutoSize = true;
+            this.Menu_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Menu_label.Location = new System.Drawing.Point(97, 12);
+            this.Menu_label.Name = "Menu_label";
+            this.Menu_label.Size = new System.Drawing.Size(76, 18);
+            this.Menu_label.TabIndex = 25;
+            this.Menu_label.Text = "Tab_Label";
+            // 
             // Calc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(434, 331);
+            this.Controls.Add(this.Menu_label);
             this.Controls.Add(this.button16);
             this.Controls.Add(this.Title);
             this.Controls.Add(this.comboBox1);
@@ -343,6 +354,7 @@
         protected System.Windows.Forms.ComboBox comboBox1;
         protected System.Windows.Forms.Button button16;
         protected System.Windows.Forms.Label Title;
+        protected System.Windows.Forms.Label Menu_label;
     }
 }
 
