@@ -20,6 +20,7 @@ namespace Calculator
         protected string operatorArray = "";               //character array to store the list of operators under operations
         protected bool conscOp = false;                   //check to see if consecutive operator has been pressed 
         protected string key_press = "";                //to store the char received from keyboard input
+        private string[] SpecialOprList = { "%" };
 
         public Calc()
         {
@@ -54,7 +55,6 @@ namespace Calculator
                 reinitialize_variables();
                 exitCheck = true;
                 Advanced adv = new Advanced();
-                //Menu_label.Text = "Advanced"
                 adv.Show();         //opening up the advanced window
                 this.Hide();        //hiding the current window
             }
@@ -71,24 +71,24 @@ namespace Calculator
         protected virtual void button_clicked(object sender, EventArgs e)  //if any button except AC is pressed
         {
             Button button = (Button)sender;
-            something_clicked_pressed(button.Text);
+            something_clicked_pressed(button.Text, SpecialOprList);
         }
 
-        private bool notANumber(string text_inp)       //check to see if the button clicked is a number or not
+        private bool notANumber(string text_inp, string[] SpecialOprList)       //check to see if the button clicked is a number or not
         {
-            if (text_inp.Equals("+") || text_inp.Equals("-") || text_inp.Equals("x") || text_inp.Equals("/") || text_inp.Equals("=") || text_inp.Equals("%"))
+            if (text_inp.Equals("+") || text_inp.Equals("-") || text_inp.Equals("x") || text_inp.Equals("/") || text_inp.Equals("=") || SpecialOprList.Contains(text_inp))
                 return true;
             else
                 return false;
         }
 
-        protected void something_clicked_pressed(string text_inp)  //if either valid keyboard key or button is pressed
+        protected void something_clicked_pressed(string text_inp, string[] SpecialOprList)  //if either valid keyboard key or button is pressed
         {
             if (text_inp.Equals("C"))            //if button pressed is "clear entry" CE
                 outputPanel.Text = "0";
             else if (text_inp.Equals("AC"))
                 reinitialize_variables();
-            else if (!notANumber(text_inp))   //if the button pressed is either a number or dec point
+            else if (!notANumber(text_inp, SpecialOprList))   //if the button pressed is either a number or dec point
             {
                 if (oprClicked)             //zeroing out the field for new number entry every type check
                 {
@@ -116,7 +116,7 @@ namespace Calculator
                         oprClickCount++;
                     opr = text_inp;
                     oprClicked = true;
-                    if (text_inp.Equals("%"))
+                    if (SpecialOprList.Contains(text_inp))
                     {
                         num1 = calculations(opr, num1, 0);
                         outputPanel.Text = Convert.ToString(num1);
@@ -137,7 +137,7 @@ namespace Calculator
                     }
                     else
                     {
-                        if (opr != "%" && operatorArray != "=") //making sure last calc wasnt of percentage conditions like these 67%+5 
+                        if (!SpecialOprList.Contains(opr) && operatorArray != "=") //making sure last calc wasnt of percentage conditions like these 67%+5 
                         {
                             num2 = float.Parse(outputPanel.Text);
                             if (operatorArray.Length == 1 && conscOp == false)
@@ -147,7 +147,7 @@ namespace Calculator
                             }
                         }
                         operatorArray = opr = text_inp;     //passing the last pressed operator
-                        if (opr == "%")     //if the user pressed % after some calc like 4+5%
+                        if (SpecialOprList.Contains(opr))     //if the user pressed % after some calc like 4+5%
                         {
                             num1 = calculations(opr, num1, 0);
                             num2 = 0;
@@ -189,12 +189,12 @@ namespace Calculator
                 else
                     key_press = e.KeyChar.ToString();
                 e.Handled = true;
-                something_clicked_pressed(key_press);
+                something_clicked_pressed(key_press, SpecialOprList);
             }
             key_press = "";
         }
 
-        private float calculations(string opr, float n1, float n2)      //functions to perform the mathematical function as requested by user
+        protected virtual float calculations(string opr, float n1, float n2)      //functions to perform the mathematical function as requested by user
         {
             float result = 0;
             switch (opr)
@@ -213,13 +213,12 @@ namespace Calculator
                     result = n1 * n2;
                     break;
                 case "%":
-                    result = n1/100;
+                    result = n1 / 100;
                     break;
                 default:
                     result = n1;
                     break;
             }
-
             return result;
         }
 

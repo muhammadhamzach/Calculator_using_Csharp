@@ -63,10 +63,11 @@ namespace Calculator
                     if (Convert.ToInt32(points) > 0)                //converting decimal string into number for calc
                     {
                         andStr = " Point";// decimal point 
-                        pointStr = ConvertDecimals(points);         
+                        pointStr = ConvertDecimals(points);
+                    }
             }
-                value = ConvertWholeNumber(wholeNo).Trim() + andStr + pointStr;         //final word formed from number
-            }
+            value = ConvertWholeNumber(wholeNo).Trim() + andStr + pointStr;         //final word formed from number
+            
             return value;
         }               //converting full no into words
 
@@ -86,8 +87,26 @@ namespace Calculator
         private String ConvertWholeNumber(String Number)        //for converting the whole no part into words
         {
             string word = "";
-            decimal Number_double = (Decimal.Parse(Number));      //converting number string into number double
-            if (Number_double > 0)
+            bool digit_left_check = false;
+            double x;
+            double Number_double;
+
+            try
+            {
+                decimal Number_decimal = (Decimal.Parse(Number));
+                if (Number_decimal > 0) digit_left_check = true;
+                Number_double = (double)Number_decimal;
+            }
+            catch
+            {
+                try {
+                    Number_double = (Convert.ToDouble(Number));
+                    if (Number_double > 0) digit_left_check = true;
+                }
+                catch { Number_double = 0; } 
+            }
+           
+            if (digit_left_check)
             {
                 Number = Number_double.ToString();              //check to remove any preceeding zero like 000001 = 1 etc.
                 int numDigits = Number.Length;          
@@ -178,6 +197,10 @@ namespace Calculator
         {
             NumberToWords(sender, e);
         }
+        private void outputPanel_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            NumberToWords(sender, e);
+        }
 
         private void AdvancedPlus_Load(object sender, EventArgs e)
         {
@@ -193,5 +216,7 @@ namespace Calculator
             if (!exitCheck)
                 Application.Exit();
         }
+
+        
     }
 }
