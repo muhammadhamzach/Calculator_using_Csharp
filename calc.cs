@@ -247,10 +247,5 @@ namespace Calculator
             return result;
         }
 
-        private void Calc_FormClosing(object sender, FormClosingEventArgs e)        //form closing event 
-        {
-            if (!exitCheck)
-                Application.Exit();
-        }
     }
 }

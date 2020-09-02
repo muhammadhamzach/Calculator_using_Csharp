@@ -206,7 +206,8 @@ namespace Calculator
         {
             Button button = (Button)sender;
             something_clicked_pressed(button.Text, SpecialOprList);
-            NumberToWords(sender, e);
+            if (tab_no == 3)
+                NumberToWords(sender, e);
         }
 
         private void AdvancedPlus_KeyPress(object sender, KeyPressEventArgs e)
@@ -219,21 +220,11 @@ namespace Calculator
             NumberToWords(sender, e);
         }
 
-        private void AdvancedPlus_Load(object sender, EventArgs e)
-        {
-            foreach (Control c in Controls)
-            {
-                if (c is Button)
-                    c.Click += new System.EventHandler(NumberToWords);
-            }
-        }
-
         private void AdvancedPlus_FormClosing(object sender, FormClosingEventArgs e)  //application closed via advplus tab
         {
             if (!exitCheck)
                 Application.Exit();
         }
-
         
     }
 }

@@ -58,7 +58,7 @@
             this.Controls.Add(this.wordBox);
             this.Name = "AdvancedPlus";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AdvancedPlus_FormClosing);
-            this.Load += new System.EventHandler(this.AdvancedPlus_Load);
+          //  this.Load += new System.EventHandler(this.AdvancedPlus_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AdvancedPlus_KeyPress);
           //  this.Controls.SetChildIndex(this.Menu_label, 0);
             this.Controls.SetChildIndex(this.button20, 0);

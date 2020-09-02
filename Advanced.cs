@@ -76,10 +76,5 @@ namespace Calculator
             return result;
         }
 
-        private void Advanced_FormClosed(object sender, FormClosedEventArgs e)      //application closed via adv tab
-        {
-            if (!exitCheck)
-                Application.Exit();
-        }
     }
 }

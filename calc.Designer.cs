@@ -321,7 +321,7 @@
             this.MaximizeBox = false;
             this.Name = "Calc";
             this.Text = "Calculator";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Calc_FormClosing);
+           // this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Calc_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Calc_KeyPress);
             this.ResumeLayout(false);
