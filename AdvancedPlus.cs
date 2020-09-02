@@ -15,7 +15,6 @@ namespace Calculator
         string[] tens =  { "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen", "Twenty", "Thirty", "Forty",
                                 "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"};
 
-
         public AdvancedPlus()
         {
            comboBox1.SelectedIndexChanged += new System.EventHandler(template_create);
@@ -36,17 +35,19 @@ namespace Calculator
                 basic_calc_create();
                 adv_calc_create();
                 Menu_label.Text = "Advanced";
-            }
-                
+            }  
             if (tab_no == 1)
+            {
                 basic_calc_create();
+                Menu_label.Text = "Basic";
+            }
             comboBox1.SelectedIndexChanged += new System.EventHandler(template_create);
-        }
+        }       //deciding what GUI to make
 
         private void advpl_calc_create()
         {
             InitializeComponent();
-        }
+        }                           //ceating adv+ GUI
 
         private void NumberToWords(object sender, EventArgs e)
         {

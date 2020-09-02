@@ -89,9 +89,10 @@ namespace Calculator
                         c.Click += new System.EventHandler(button_clicked);
                 }
             }
-        }
+        }                               //creating basic calc GUI
 
-        protected virtual void button_clicked(object sender, EventArgs e)  //over riden in Adv+ because more funcionality
+        //over ridden in Adv+ because more functionality
+        protected virtual void button_clicked(object sender, EventArgs e)  
         {
             Button button = (Button)sender;
             something_clicked_pressed(button.Text, SpecialOprList);
@@ -217,7 +218,7 @@ namespace Calculator
                 something_clicked_pressed(key_press, SpecialOprList);
             }
             key_press = "";
-        }
+        }       //key board input validation fntn
 
         protected virtual float calculations(string opr, float n1, float n2)      //functions to perform the mathematical function as requested by user
         {
@@ -246,6 +247,5 @@ namespace Calculator
             }
             return result;
         }
-
     }
 }

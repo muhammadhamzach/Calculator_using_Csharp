@@ -14,7 +14,7 @@ namespace Calculator
 
         public Advanced()
         {
-        }
+        }       //constructor
 
         protected void adv_calc_create()
         {
@@ -27,9 +27,9 @@ namespace Calculator
                         c.Click += new System.EventHandler(button_clicked);
                 }
             }
-        }
+        }       //creating Adv GUI
 
-        protected virtual void button_clicked(object sender, EventArgs e)  //over-rided in Adv+ bcz more functionality
+        protected virtual void button_clicked(object sender, EventArgs e)  //over-rideen in Adv+ bcz more functionality
         {
             Button button = (Button)sender;
             something_clicked_pressed(button.Text, SpecialOprList);
