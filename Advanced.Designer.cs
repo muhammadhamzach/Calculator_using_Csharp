@@ -106,10 +106,6 @@
             // 
             this.button19.Location = new System.Drawing.Point(340, 102);
             // 
-            // comboBox1
-            // 
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged_1);
-            // 
             // button16
             // 
             this.button16.Location = new System.Drawing.Point(340, 158);

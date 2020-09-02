@@ -8,36 +8,28 @@ using System.Windows.Forms;
 
 namespace Calculator
 {
-    public partial class Advanced : Calculator.Calc
+    public partial class Advanced : Calc
     {
-        private string[] SpecialOprList = { "%", "SQRT", "1/x", "CbRT", "x^2"};
+        protected string[] SpecialOprList = { "%", "SQRT", "1/x", "CbRT", "x^2"};
 
         public Advanced()
         {
-            InitializeComponent();
-            Menu_label.Text = "Advanced";
         }
 
-        private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)       //tab selection drop selection menu
+        protected void adv_calc_create()
         {
-            if (comboBox1.Text == "Basic")
+            InitializeComponent();
+            if (tab_no != 1)
             {
-                reinitialize_variables();
-                exitCheck = true;
-                Calc basic = new Calc();
-                basic.Show();
-                this.Hide();        //hiding the current window
-            }
-            else if (comboBox1.Text == "Advanced+")
-            {
-                reinitialize_variables();
-                exitCheck = true;
-                AdvancedPlus advpl = new AdvancedPlus();
-                this.Hide();        //hiding the current window
+                foreach (Control c in Controls)
+                {
+                    if (c is Button)
+                        c.Click += new System.EventHandler(button_clicked);
+                }
             }
         }
 
-        protected override void button_clicked(object sender, EventArgs e)  //if any button except AC is pressed
+        protected virtual void button_clicked(object sender, EventArgs e)  //over-rided in Adv+ bcz more functionality
         {
             Button button = (Button)sender;
             something_clicked_pressed(button.Text, SpecialOprList);

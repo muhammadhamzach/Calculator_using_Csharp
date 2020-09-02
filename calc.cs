@@ -12,6 +12,7 @@ namespace Calculator
 {
     public partial class Calc : Form
     {
+        
         protected bool oprClicked;                    //check for text field display to zero out for new number
         protected int oprClickCount = 0;              //counter to see how many operators have been pressed
         protected float num1, num2;
@@ -21,12 +22,16 @@ namespace Calculator
         protected bool conscOp = false;                   //check to see if consecutive operator has been pressed 
         protected string key_press = "";                //to store the char received from keyboard input
         private string[] SpecialOprList = { "%" };
+        protected int tab_no = 1;
 
         public Calc()
         {
-            InitializeComponent();
-            this.KeyPreview = true;
-            Menu_label.Text = "Basic";
+           // if (tab_no == 1)
+           // {
+                InitializeComponent();
+                Menu_label.Text = "Basic";
+         //   }
+            this.KeyPreview = true;  
         }
 
         private void Form1_Load(object sender, EventArgs e) //loading the calculator form button controls
@@ -54,21 +59,39 @@ namespace Calculator
             {
                 reinitialize_variables();
                 exitCheck = true;
-                Advanced adv = new Advanced();
-                adv.Show();         //opening up the advanced window
-                this.Hide();        //hiding the current window
+                tab_no = 2;
+                Menu_label.Text = "Advanced";
             }
             else if (comboBox1.Text == "Advanced+")
             {
                 reinitialize_variables();
                 exitCheck = true;
-                AdvancedPlus advpl = new AdvancedPlus();
-                advpl.Show();
-                this.Hide();        //hiding the current window
+                tab_no = 3;
+                
+            }
+            else if (comboBox1.Text == "Basic")
+            {
+                reinitialize_variables();
+                exitCheck = true;       //hiding the current window
+                tab_no = 1;
+                Menu_label.Text = "Basic";
             }
         }
 
-        protected virtual void button_clicked(object sender, EventArgs e)  //if any button except AC is pressed
+        protected void basic_calc_create()
+        {
+            InitializeComponent();
+            if (tab_no == 1)
+            {
+                foreach (Control c in Controls)
+                {
+                    if (c is Button)
+                        c.Click += new System.EventHandler(button_clicked);
+                }
+            }
+        }
+
+        protected virtual void button_clicked(object sender, EventArgs e)  //over riden in Adv+ because more funcionality
         {
             Button button = (Button)sender;
             something_clicked_pressed(button.Text, SpecialOprList);
@@ -163,13 +186,15 @@ namespace Calculator
 
         private void Calc_KeyPress(object sender, KeyPressEventArgs e)
         {
-            key_press_handler(sender, e);
+            if (!e.Handled)
+                key_press_handler(sender, e);
             e.Handled = true;
         }
 
         protected void outputPanel_KeyPress(object sender, KeyPressEventArgs e)
         {
-            key_press_handler(sender, e);
+            if (!e.Handled)
+                key_press_handler(sender, e);
             e.Handled = true;
         }   //keyboard key pressed on output panel
 

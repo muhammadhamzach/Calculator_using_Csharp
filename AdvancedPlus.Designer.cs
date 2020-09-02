@@ -39,7 +39,7 @@
             // 
             // comboBox1
             // 
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged_1);
+           // this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged_1);
             // 
             // wordBox
             // 
@@ -60,7 +60,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AdvancedPlus_FormClosing);
             this.Load += new System.EventHandler(this.AdvancedPlus_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AdvancedPlus_KeyPress);
-            this.Controls.SetChildIndex(this.Menu_label, 0);
+          //  this.Controls.SetChildIndex(this.Menu_label, 0);
             this.Controls.SetChildIndex(this.button20, 0);
             this.Controls.SetChildIndex(this.button21, 0);
             this.Controls.SetChildIndex(this.button22, 0);

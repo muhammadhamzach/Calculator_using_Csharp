@@ -283,11 +283,11 @@
             // 
             this.Menu_label.AutoSize = true;
             this.Menu_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Menu_label.Location = new System.Drawing.Point(97, 12);
+            this.Menu_label.Location = new System.Drawing.Point(100, 12);
             this.Menu_label.Name = "Menu_label";
-            this.Menu_label.Size = new System.Drawing.Size(76, 18);
+            this.Menu_label.Size = new System.Drawing.Size(46, 18);
             this.Menu_label.TabIndex = 25;
-            this.Menu_label.Text = "Tab_Label";
+            this.Menu_label.Text = "label1";
             // 
             // Calc
             // 

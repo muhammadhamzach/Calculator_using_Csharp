@@ -9,17 +9,43 @@ using System.Windows.Forms;
 
 namespace Calculator
 {
-    public partial class AdvancedPlus : Calculator.Advanced
+    public partial class AdvancedPlus : Advanced
     {
-
         string[] units = { "Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine" };
         string[] tens =  { "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen", "Twenty", "Thirty", "Forty",
                                 "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"};
 
+
         public AdvancedPlus()
         {
+           comboBox1.SelectedIndexChanged += new System.EventHandler(template_create);
+        }
+
+        private void template_create(object sender, EventArgs e)
+        {
+            this.Controls.Clear();
+            if (tab_no == 3)
+            {
+                basic_calc_create();
+                adv_calc_create();
+                advpl_calc_create();
+                Menu_label.Text = "Advanced+";
+            }
+            if (tab_no == 2)
+            {
+                basic_calc_create();
+                adv_calc_create();
+                Menu_label.Text = "Advanced";
+            }
+                
+            if (tab_no == 1)
+                basic_calc_create();
+            comboBox1.SelectedIndexChanged += new System.EventHandler(template_create);
+        }
+
+        private void advpl_calc_create()
+        {
             InitializeComponent();
-            Menu_label.Text = "Advanced+";
         }
 
         private void NumberToWords(object sender, EventArgs e)
@@ -101,7 +127,7 @@ namespace Calculator
             {
                 try {
                     Number_double = (Convert.ToDouble(Number));
-                    if (Number_double > 0) digit_left_check = true;
+                    if (Number_double > 0 && Number_double < 1E+15) digit_left_check = true;
                 }
                 catch { Number_double = 0; } 
             }
@@ -169,34 +195,25 @@ namespace Calculator
                         word = units[Int32.Parse(Number[0].ToString())] + " Hundred Trillion " + ConvertWholeNumber(Number.Substring(1));
                         break;
                     default:
+                        word = "";
                         break;
                 } 
             }
             return word.Trim();
         }
 
-        private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)  //tab selection drop selection menu
+        protected override void button_clicked(object sender, EventArgs e)  //if any button except AC is pressed
         {
-            if (comboBox1.Text == "Basic")      //if basic calc is sel
-            {
-                reinitialize_variables();
-                exitCheck = true;
-                Calc basic = new Calc();
-                this.Hide();            //hiding the current window
-            }
-            else if (comboBox1.Text == "Advanced")      //if adv calc is sel
-            {
-                reinitialize_variables();
-                exitCheck = true;
-                Advanced adv = new Advanced();
-                this.Hide();          //hiding the current window
-            }
+            Button button = (Button)sender;
+            something_clicked_pressed(button.Text, SpecialOprList);
+            NumberToWords(sender, e);
         }
 
         private void AdvancedPlus_KeyPress(object sender, KeyPressEventArgs e)
         {
             NumberToWords(sender, e);
         }
+
         private void outputPanel_KeyPress_1(object sender, KeyPressEventArgs e)
         {
             NumberToWords(sender, e);
