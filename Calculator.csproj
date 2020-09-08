@@ -46,32 +46,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Advanced.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Advanced.Designer.cs">
-      <DependentUpon>Advanced.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AdvancedPlus.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AdvancedPlus.Designer.cs">
-      <DependentUpon>AdvancedPlus.cs</DependentUpon>
-    </Compile>
     <Compile Include="calc.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="calc.Designer.cs">
       <DependentUpon>calc.cs</DependentUpon>
     </Compile>
+    <Compile Include="CalcAdv.cs" />
+    <Compile Include="CalcAdvPlus.cs" />
+    <Compile Include="CalcBasic.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Advanced.resx">
-      <DependentUpon>Advanced.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AdvancedPlus.resx">
-      <DependentUpon>AdvancedPlus.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="calc.resx">
       <DependentUpon>calc.cs</DependentUpon>
     </EmbeddedResource>

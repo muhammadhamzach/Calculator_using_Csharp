@@ -20,3 +20,13 @@ C:\Users\Muhammad Hamza\Google Drive\CureMD\Calculator_using_Csharp\bin\Debug\Ca
 C:\Users\Muhammad Hamza\Google Drive\CureMD\Calculator_using_Csharp\bin\Debug\Calculator.pdb
 C:\Users\Muhammad Hamza\Google Drive\CureMD\Calculator_using_Csharp\obj\Debug\Calculator.exe
 C:\Users\Muhammad Hamza\Google Drive\CureMD\Calculator_using_Csharp\obj\Debug\Calculator.pdb
+C:\Users\Hamza\Documents\Calculator_using_Csharp\bin\Debug\Calculator.exe.config
+C:\Users\Hamza\Documents\Calculator_using_Csharp\bin\Debug\Calculator.exe
+C:\Users\Hamza\Documents\Calculator_using_Csharp\bin\Debug\Calculator.pdb
+C:\Users\Hamza\Documents\Calculator_using_Csharp\obj\Debug\Calculator.csprojAssemblyReference.cache
+C:\Users\Hamza\Documents\Calculator_using_Csharp\obj\Debug\Calculator.Calc.resources
+C:\Users\Hamza\Documents\Calculator_using_Csharp\obj\Debug\Calculator.Properties.Resources.resources
+C:\Users\Hamza\Documents\Calculator_using_Csharp\obj\Debug\Calculator.csproj.GenerateResource.cache
+C:\Users\Hamza\Documents\Calculator_using_Csharp\obj\Debug\Calculator.csproj.CoreCompileInputs.cache
+C:\Users\Hamza\Documents\Calculator_using_Csharp\obj\Debug\Calculator.exe
+C:\Users\Hamza\Documents\Calculator_using_Csharp\obj\Debug\Calculator.pdb

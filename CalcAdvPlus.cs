@@ -1,58 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+using System.Linq;
 using System.Text;
-using System.Threading;
-using System.Windows.Forms;
+using System.Threading.Tasks;
 
 namespace Calculator
 {
-    public partial class AdvancedPlus : Advanced
+    class CalcAdvPlus : CalcAdv
     {
         string[] units = { "Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine" };
         string[] tens =  { "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen", "Twenty", "Thirty", "Forty",
                                 "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"};
 
-        public AdvancedPlus()
-        {
-           comboBox1.SelectedIndexChanged += new System.EventHandler(template_create);
-        }
-
-        private void template_create(object sender, EventArgs e)
-        {
-            this.Controls.Clear();
-            if (tab_no == 3)
-            {
-                basic_calc_create();
-                adv_calc_create();
-                advpl_calc_create();
-                Menu_label.Text = "Advanced+";
-            }
-            if (tab_no == 2)
-            {
-                basic_calc_create();
-                adv_calc_create();
-                Menu_label.Text = "Advanced";
-            }  
-            if (tab_no == 1)
-            {
-                basic_calc_create();
-                Menu_label.Text = "Basic";
-            }
-            comboBox1.SelectedIndexChanged += new System.EventHandler(template_create);
-        }       //deciding what GUI to make
-
-        private void advpl_calc_create()
-        {
-            InitializeComponent();
-        }                           //ceating adv+ GUI
-
-        private void NumberToWords(object sender, EventArgs e)
+        public string NumberToWords(string outputPanelText)
         {
             string isNegative = "";
-            string number = outputPanel.Text;
+            string number = outputPanelText;
             string word = "";
 
             if (number.Contains("-"))       //negative number check
@@ -63,17 +26,18 @@ namespace Calculator
             if (number == "0")      //if no is Zero then do nothing else xD
                 word = "Zero";
             else                    //if no is non-zero
-                word =  isNegative + ConvertToWords(number);
+                word = isNegative + ConvertToWords(number);
 
-               wordBox.Text = word;         //putting the text onto the panel
-                   
+            return word;         //putting the text onto the panel
+
         }       //conversion initializer for Neg/Pos dec no
 
         private String ConvertToWords(String number)
         {
             String value = "", points = "", andStr = "", pointStr = "", wholeNo = number;
 
-            try {
+            try
+            {
                 decimal d = Decimal.Parse(number, System.Globalization.NumberStyles.Float);
                 number = d.ToString();
             }
@@ -94,7 +58,7 @@ namespace Calculator
                     }
             }
             value = ConvertWholeNumber(wholeNo).Trim() + andStr + pointStr;         //final word formed from number
-            
+
             return value;
         }               //converting full no into words
 
@@ -102,7 +66,7 @@ namespace Calculator
         {
             String decimalAfter = "";
             int digit;
-            
+
             for (int i = 0; i < number.Length; i++)     //looping through all no after point and writing each number on the panel
             {
                 digit = Int32.Parse(number[i].ToString());
@@ -126,19 +90,20 @@ namespace Calculator
             }
             catch
             {
-                try {
+                try
+                {
                     Number_double = (Convert.ToDouble(Number));
                     if (Number_double > 0 && Number_double < 1E+15) digit_left_check = true;
                 }
-                catch { Number_double = 0; } 
+                catch { Number_double = 0; }
             }
-           
+
             if (digit_left_check)
             {
                 Number = Number_double.ToString();              //check to remove any preceeding zero like 000001 = 1 etc.
-                int numDigits = Number.Length;          
+                int numDigits = Number.Length;
                 int digit;
-                    
+
                 switch (numDigits)
                 {
                     case 1:                 //ones' range    
@@ -154,7 +119,7 @@ namespace Calculator
                             word = tens[Int32.Parse(Number[0].ToString()) + 8];
                             word += " ";
                             word += units[digit];
-                        } 
+                        }
                         break;
                     case 3:                 //hundreds' range    
                         word = ConvertWholeNumber(Number[0].ToString()) + " Hundred " + ConvertWholeNumber(Number.Substring(1));
@@ -198,34 +163,10 @@ namespace Calculator
                     default:
                         word = "";
                         break;
-                } 
+                }
             }
             return word.Trim();
         }
 
-        protected override void button_clicked(object sender, EventArgs e)  //if any button except AC is pressed
-        {
-            Button button = (Button)sender;
-            something_clicked_pressed(button.Text, SpecialOprList);
-            if (tab_no == 3)
-                NumberToWords(sender, e);
-        }
-
-        private void AdvancedPlus_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            NumberToWords(sender, e);
-        }
-
-        private void outputPanel_KeyPress_1(object sender, KeyPressEventArgs e)
-        {
-            NumberToWords(sender, e);
-        }
-
-        private void AdvancedPlus_FormClosing(object sender, FormClosingEventArgs e)  //application closed via advplus tab
-        {
-            if (!exitCheck)
-                Application.Exit();
-        }
-        
     }
 }
