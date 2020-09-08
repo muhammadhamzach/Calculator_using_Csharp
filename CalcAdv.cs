@@ -10,7 +10,7 @@ namespace Calculator
     {
         #region Over-Riding Functions for Advanced Functionality on Basic Calc
 
-        protected string[] SpecialOprList = { "%", "SQRT", "1/x", "CbRT", "x^2" };
+        protected string[] SpecialOprList = { "SQRT", "1/x", "CbRT", "x^2" };
 
         protected override string[] getOprList()
         {
@@ -36,7 +36,7 @@ namespace Calculator
                     result = n1 * n2;
                     break;
                 case "%":
-                    result = n1 / 100;
+                    result = (n1 / 100) * n2;
                     break;
                 case "SQRT":
                     result = (float)Math.Sqrt(Convert.ToDouble(n1));

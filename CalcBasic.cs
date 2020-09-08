@@ -14,7 +14,7 @@ namespace Calculator
         protected string opr;                         //string carrying the operator used for calculation
         protected string operatorArray = "";               //character array to store the list of operators under operations
         protected bool conscOp = false;                   //check to see if consecutive operator has been pressed 
-        private string[] SpecialOprList = { "%" };
+        private string[] SpecialOprList = {};
 
         public void reinitialize_variables()
         {
@@ -32,7 +32,7 @@ namespace Calculator
 
         private bool notANumber(string text_inp, string[] SpecialOprList)       //check to see if the button clicked is a number or not
         {
-            if (text_inp.Equals("+") || text_inp.Equals("-") || text_inp.Equals("x") || text_inp.Equals("/") || text_inp.Equals("=") || getOprList().Contains(text_inp))
+            if (text_inp.Equals("%") || text_inp.Equals("+") || text_inp.Equals("-") || text_inp.Equals("x") || text_inp.Equals("/") || text_inp.Equals("=") || getOprList().Contains(text_inp))
                 return true;
             else
                 return false;
@@ -86,11 +86,14 @@ namespace Calculator
                 else  //if the operator has been pressed beforehand
                 {
                     //finding the result from the calc of two no with given operator and displaying in the box
-                    if (text_inp.Equals("="))  //if the user has pressed another operator then storing operator in the string variable
+                    if (text_inp.Equals("=") || text_inp.Equals("%"))  //if the user has pressed another operator then storing operator in the string variable
                     {
                         if (!conscOp)      //bug fix for consecutive "=" presses
                             num2 = float.Parse(outputPanelText);
-                        num1 = calculations(opr, num1, num2);
+                        if (text_inp.Equals("%"))
+                            num2 = calculations("%", num1, num2);
+                        else
+                            num1 = calculations(opr, num1, num2);
                         operatorArray = text_inp;
                         conscOp = true;
                     }
@@ -114,7 +117,11 @@ namespace Calculator
                         oprClickCount++;
                     }
 
-                    outputPanelText = Convert.ToString(num1);
+                    float temp = 0;
+                    if (text_inp.Equals("%")) temp = num2;      //for consc %
+                    else temp = num1;
+
+                    outputPanelText = Convert.ToString(temp);
                     oprClicked = true;
                 }
             }
@@ -140,7 +147,7 @@ namespace Calculator
                     result = n1 * n2;
                     break;
                 case "%":
-                    result = n1 / 100;
+                    result = (n1 / 100)*n2;
                     break;
                 default:
                     result = n1;
