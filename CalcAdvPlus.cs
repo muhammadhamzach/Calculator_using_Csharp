@@ -8,10 +8,12 @@ namespace Calculator
 {
     class CalcAdvPlus : CalcAdv
     {
+        #region  Number to Word Convertor
         string[] units = { "Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine" };
         string[] tens =  { "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen", "Twenty", "Thirty", "Forty",
                                 "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"};
 
+    
         public string NumberToWords(string outputPanelText)
         {
             string isNegative = "";
@@ -79,13 +81,12 @@ namespace Calculator
         {
             string word = "";
             bool digit_left_check = false;
-            double x;
             double Number_double;
 
             try
             {
                 decimal Number_decimal = (Decimal.Parse(Number));
-                if (Number_decimal > 0) digit_left_check = true;
+                if (Number_decimal > 0 && Number_decimal < 1000000000000000) digit_left_check = true;
                 Number_double = (double)Number_decimal;
             }
             catch
@@ -118,7 +119,8 @@ namespace Calculator
                         {
                             word = tens[Int32.Parse(Number[0].ToString()) + 8];
                             word += " ";
-                            word += units[digit];
+                            if (digit != 0)
+                                word += units[digit];
                         }
                         break;
                     case 3:                 //hundreds' range    
@@ -167,6 +169,6 @@ namespace Calculator
             }
             return word.Trim();
         }
-
+        #endregion
     }
 }

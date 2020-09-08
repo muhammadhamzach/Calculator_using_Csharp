@@ -15,7 +15,6 @@ namespace Calculator
         protected string operatorArray = "";               //character array to store the list of operators under operations
         protected bool conscOp = false;                   //check to see if consecutive operator has been pressed 
         private string[] SpecialOprList = { "%" };
-        protected int tab_no = 1;
 
         public void reinitialize_variables()
         {
@@ -25,6 +24,7 @@ namespace Calculator
             opr = operatorArray = "";
         }               //zeroing out the variables for resuse
 
+        #region Handling the Inputs to the Calculator
         protected virtual string[] getOprList()
         {
             return SpecialOprList;
@@ -148,6 +148,6 @@ namespace Calculator
             }
             return result;
         }
-
+        #endregion
     }
 }

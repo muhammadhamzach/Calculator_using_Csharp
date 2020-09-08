@@ -59,7 +59,7 @@
             this.outputPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.outputPanel.Location = new System.Drawing.Point(20, 40);
             this.outputPanel.Name = "outputPanel";
-            this.outputPanel.Size = new System.Drawing.Size(395, 49);
+            this.outputPanel.Size = new System.Drawing.Size(395, 54);
             this.outputPanel.TabIndex = 0;
             this.outputPanel.Text = "0";
             this.outputPanel.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -273,9 +273,9 @@
             // 
             this.Title.AutoSize = true;
             this.Title.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Title.Location = new System.Drawing.Point(295, 13);
+            this.Title.Location = new System.Drawing.Point(277, 12);
             this.Title.Name = "Title";
-            this.Title.Size = new System.Drawing.Size(121, 16);
+            this.Title.Size = new System.Drawing.Size(138, 18);
             this.Title.TabIndex = 23;
             this.Title.Text = "CureMD C# Project";
             // 
@@ -285,7 +285,7 @@
             this.Menu_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Menu_label.Location = new System.Drawing.Point(100, 12);
             this.Menu_label.Name = "Menu_label";
-            this.Menu_label.Size = new System.Drawing.Size(46, 18);
+            this.Menu_label.Size = new System.Drawing.Size(53, 20);
             this.Menu_label.TabIndex = 25;
             this.Menu_label.Text = "label1";
             // 
@@ -321,7 +321,6 @@
             this.MaximizeBox = false;
             this.Name = "Calc";
             this.Text = "Calculator";
-           // this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Calc_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Calc_KeyPress);
             this.ResumeLayout(false);

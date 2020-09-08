@@ -12,8 +12,6 @@ namespace Calculator
 {
     public partial class Calc : Form
     {
-        private bool exitCheck = false;       //check to see if either user is changing tab or closing the program across all three tabs
-        private string key_press = "";                //to store the char received from keyboard input
         private int tab_no = 1;
         private System.Windows.Forms.Button button20;
         private System.Windows.Forms.Button button21;
@@ -38,7 +36,8 @@ namespace Calculator
                     c.Click += new System.EventHandler(button_clicked);
             }
         }
-    
+
+        #region Selecting and creating different GUI's
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)  //tab selection drop selection menu
         {
             if (comboBox1.Text == "Advanced")
@@ -46,7 +45,6 @@ namespace Calculator
                 calcObj = new CalcAdv();
                 adv_calc_create();
                 outputPanel.Text = "0";
-                exitCheck = true;
                 tab_no = 2;
                 Menu_label.Text = "Advanced";
             }
@@ -55,17 +53,15 @@ namespace Calculator
                 calcObj = new CalcAdvPlus();
                 advplus_calc_create();
                 outputPanel.Text = "0";
-                exitCheck = true;
                 tab_no = 3;
                 Menu_label.Text = "Advanced+";
             }
             else if (comboBox1.Text == "Basic")
             {
                 calcObj = new CalcBasic();
+                tab_no = 1;
                 basic_calc_create();
                 outputPanel.Text = "0";
-                exitCheck = true;       //hiding the current window
-                tab_no = 1;
                 Menu_label.Text = "Basic";
             }
         }
@@ -74,18 +70,18 @@ namespace Calculator
         {
             this.Controls.Clear();
             InitializeComponent();
-            if (tab_no == 1)
+            foreach (Control c in Controls)
             {
-                foreach (Control c in Controls)
-                {
-                    if (c is Button)
-                        c.Click += new System.EventHandler(button_clicked);
-                }
+                 if (c is Button)
+                    c.Click += new System.EventHandler(button_clicked);
             }
         }                               //creating basic calc GUI
 
         private void adv_calc_create()
         {
+            this.Controls.Clear();
+            tab_no = 1;
+            basic_calc_create();
             this.button20 = new System.Windows.Forms.Button();
             this.button21 = new System.Windows.Forms.Button();
             this.button22 = new System.Windows.Forms.Button();
@@ -176,7 +172,9 @@ namespace Calculator
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+        #endregion
 
+        #region Keyboard and GUI Button Handlers
         private void button_clicked(object sender, EventArgs e)  
         {
             Button button = (Button)sender;
@@ -185,6 +183,7 @@ namespace Calculator
             if (tab_no == 3)
             {
                 string textword = calcObj.NumberToWords(outputPanel.Text);
+                wordBox.Text = "";
                 wordBox.Text = textword;
             }    
         }
@@ -215,6 +214,7 @@ namespace Calculator
 
         private void key_press_handler(object sender, KeyPressEventArgs e)
         {
+            string key_press = "";                //to store the char received from keyboard input
             if (char.IsDigit(e.KeyChar) || e.KeyChar == '.' || e.KeyChar.Equals('/') || e.KeyChar.Equals('*') || e.KeyChar.Equals('+') ||
                 e.KeyChar.Equals('-') || e.KeyChar.Equals('%') || e.KeyChar == (char)Keys.Escape || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Enter)
             {
@@ -234,6 +234,6 @@ namespace Calculator
             }
             key_press = "";
         }       //key board input validation fntn
-       
+        #endregion
     }
 }

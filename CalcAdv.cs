@@ -8,6 +8,8 @@ namespace Calculator
 {
     class CalcAdv : CalcBasic
     {
+        #region Over-Riding Functions for Advanced Functionality on Basic Calc
+
         protected string[] SpecialOprList = { "%", "SQRT", "1/x", "CbRT", "x^2" };
 
         protected override string[] getOprList()
@@ -55,6 +57,6 @@ namespace Calculator
             }
             return result;
         }
-
+        #endregion
     }
 }
