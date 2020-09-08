@@ -12,23 +12,14 @@ namespace Calculator
 {
     public partial class Calc : Form
     {
-        
-       // protected bool oprClicked;                    //check for text field display to zero out for new number
-       // protected int oprClickCount = 0;              //counter to see how many operators have been pressed
-       // protected float num1, num2;
-       // protected string opr;                         //string carrying the operator used for calculation
-        protected bool exitCheck = false;       //check to see if either user is changing tab or closing the program across all three tabs
-       // protected string operatorArray = "";               //character array to store the list of operators under operations
-       // protected bool conscOp = false;                   //check to see if consecutive operator has been pressed 
-        protected string key_press = "";                //to store the char received from keyboard input
-        //private string[] SpecialOprList = { "%" };
-        protected int tab_no = 1;
-        protected System.Windows.Forms.Button button20;
-        protected System.Windows.Forms.Button button21;
-        protected System.Windows.Forms.Button button22;
-        protected System.Windows.Forms.Button button23;
-        protected System.Windows.Forms.TextBox wordBox;
-
+        private bool exitCheck = false;       //check to see if either user is changing tab or closing the program across all three tabs
+        private string key_press = "";                //to store the char received from keyboard input
+        private int tab_no = 1;
+        private System.Windows.Forms.Button button20;
+        private System.Windows.Forms.Button button21;
+        private System.Windows.Forms.Button button22;
+        private System.Windows.Forms.Button button23;
+        private System.Windows.Forms.TextBox wordBox;
         dynamic calcObj;
 
         public Calc()
@@ -54,7 +45,6 @@ namespace Calculator
             {
                 calcObj = new CalcAdv();
                 adv_calc_create();
-                calcObj.reinitialize_variables();
                 outputPanel.Text = "0";
                 exitCheck = true;
                 tab_no = 2;
@@ -64,7 +54,6 @@ namespace Calculator
             {
                 calcObj = new CalcAdvPlus();
                 advplus_calc_create();
-                calcObj.reinitialize_variables();
                 outputPanel.Text = "0";
                 exitCheck = true;
                 tab_no = 3;
@@ -74,7 +63,6 @@ namespace Calculator
             {
                 calcObj = new CalcBasic();
                 basic_calc_create();
-                calcObj.reinitialize_variables();
                 outputPanel.Text = "0";
                 exitCheck = true;       //hiding the current window
                 tab_no = 1;
@@ -82,7 +70,7 @@ namespace Calculator
             }
         }
 
-        protected void basic_calc_create()
+        private void basic_calc_create()
         {
             this.Controls.Clear();
             InitializeComponent();
@@ -96,7 +84,7 @@ namespace Calculator
             }
         }                               //creating basic calc GUI
 
-        protected void adv_calc_create()
+        private void adv_calc_create()
         {
             this.button20 = new System.Windows.Forms.Button();
             this.button21 = new System.Windows.Forms.Button();
@@ -167,22 +155,20 @@ namespace Calculator
             this.PerformLayout();
         }
 
-        protected void advplus_calc_create()
+        private void advplus_calc_create()
         {
             adv_calc_create();
             this.wordBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             this.outputPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.outputPanel.Size = new System.Drawing.Size(395, 31);
-           // this.outputPanel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.outputPanel_KeyPress_1);
-           // this.wordBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.wordBox.Location = new System.Drawing.Point(20, 77);
             this.wordBox.Name = "wordBox";
             this.wordBox.Size = new System.Drawing.Size(395, 20);
             this.wordBox.TabIndex = 29;
             this.wordBox.Text = "Zero";
             this.wordBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // AdvancedPlus
+            
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(434, 386);
             this.Controls.Add(this.wordBox);
@@ -191,8 +177,7 @@ namespace Calculator
             this.PerformLayout();
         }
 
-        //over ridden in Adv+ because more functionality
-        protected virtual void button_clicked(object sender, EventArgs e)  
+        private void button_clicked(object sender, EventArgs e)  
         {
             Button button = (Button)sender;
             string text = calcObj.something_clicked_pressed(button.Text, outputPanel.Text);
@@ -201,8 +186,7 @@ namespace Calculator
             {
                 string textword = calcObj.NumberToWords(outputPanel.Text);
                 wordBox.Text = textword;
-            }
-                
+            }    
         }
         
         private void Calc_KeyPress(object sender, KeyPressEventArgs e)
@@ -217,7 +201,7 @@ namespace Calculator
             }
         }
 
-        protected void outputPanel_KeyPress(object sender, KeyPressEventArgs e)
+        private void outputPanel_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!e.Handled)
                 key_press_handler(sender, e);
@@ -229,7 +213,7 @@ namespace Calculator
             }
         }   //keyboard key pressed on output panel
 
-        protected void key_press_handler(object sender, KeyPressEventArgs e)
+        private void key_press_handler(object sender, KeyPressEventArgs e)
         {
             if (char.IsDigit(e.KeyChar) || e.KeyChar == '.' || e.KeyChar.Equals('/') || e.KeyChar.Equals('*') || e.KeyChar.Equals('+') ||
                 e.KeyChar.Equals('-') || e.KeyChar.Equals('%') || e.KeyChar == (char)Keys.Escape || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Enter)
