@@ -53,11 +53,15 @@ namespace Calculator
                 wholeNo = number.Substring(0, decimalPlace);        //whole no seperate
                 points = number.Substring(decimalPlace + 1);        //decimal no separate
                 if (points != "")                                  //making sure there is some no after decimal point
-                    if (Convert.ToInt32(points) > 0)                //converting decimal string into number for calc
+                    try
                     {
-                        andStr = " Point";// decimal point 
-                        pointStr = ConvertDecimals(points);
+                        if (Convert.ToInt32(points) > 0)                //converting decimal string into number for calc
+                        {
+                            andStr = " Point";// decimal point 
+                            pointStr = ConvertDecimals(points);
+                        }
                     }
+                    catch{ }
             }
             value = ConvertWholeNumber(wholeNo).Trim() + andStr + pointStr;         //final word formed from number
 
