@@ -12,10 +12,8 @@ namespace Calculator
         protected int oprClickCount = 0;              //counter to see how many operators have been pressed
         protected float num1, num2;
         protected string opr;                         //string carrying the operator used for calculation
-        //protected bool exitCheck = false;       //check to see if either user is changing tab or closing the program across all three tabs
         protected string operatorArray = "";               //character array to store the list of operators under operations
         protected bool conscOp = false;                   //check to see if consecutive operator has been pressed 
-        protected string key_press = "";                //to store the char received from keyboard input
         private string[] SpecialOprList = { "%" };
         protected int tab_no = 1;
 
@@ -25,8 +23,6 @@ namespace Calculator
             oprClickCount = 0;
             num1 = num2 = 0;
             opr = operatorArray = "";
-           // outputPanel.Text = "0";
-            key_press = "";
         }               //zeroing out the variables for resuse
 
         protected virtual string[] getOprList()
@@ -36,7 +32,7 @@ namespace Calculator
 
         private bool notANumber(string text_inp, string[] SpecialOprList)       //check to see if the button clicked is a number or not
         {
-            if (text_inp.Equals("+") || text_inp.Equals("-") || text_inp.Equals("x") || text_inp.Equals("/") || text_inp.Equals("=") || SpecialOprList.Contains(text_inp))
+            if (text_inp.Equals("+") || text_inp.Equals("-") || text_inp.Equals("x") || text_inp.Equals("/") || text_inp.Equals("=") || getOprList().Contains(text_inp))
                 return true;
             else
                 return false;
